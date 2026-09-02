@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eksplorasi Interaktif 3D: Paket Resmi WordPress Gutenberg (@wordpress/*)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wp-blue: #0073aa;
+    --wp-blue-dark: #005177;
+    --wp-blue-light: #2271b1;
+    --wp-blue-glow: rgba(0, 115, 170, 0.4);
+    --wp-accent: #0693e3;
+    --bg-dark: #090d16;
+    --bg-card: rgba(18, 26, 43, 0.85);
+    --bg-card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(0, 115, 170, 0.18) 0%, transparent 40%),
+      radial-gradient(circle at 85% 60%, rgba(6, 147, 227, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(34, 113, 177, 0.15) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* Fluid Container */
+  .container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 3vw, 2.5rem);
+  }
+
+  /* Header & 3D Logo */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    perspective: 1000px;
+  }
+
+  .wp-badge-3d {
+    width: clamp(76px, 12vw, 100px);
+    height: clamp(76px, 12vw, 100px);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #135e96, #003759);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px var(--wp-blue-glow), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    transform-style: preserve-3d;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .wp-badge-3d:hover {
+      transform: translateY(-8px) rotateX(12deg) rotateY(-12deg) scale(1.08);
+      box-shadow: 0 25px 50px rgba(6, 147, 227, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  @media (hover: none) {
+    .wp-badge-3d:active {
+      transform: scale(0.94);
+    }
+  }
+
+  .wp-logo-svg {
+    width: 60%;
+    height: 60%;
+    fill: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 115, 170, 0.18);
+    color: var(--wp-accent);
+    border: 1px solid rgba(6, 147, 227, 0.35);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 1.2rem + 2.4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
+    color: var(--text-muted);
+    max-width: 780px;
+    line-height: 1.65;
+  }
+
+  /* SECTION 1: Capability 3D Cards */
+  .section-heading {
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 1.1rem + 1vw, 2rem);
+    font-weight: 800;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+    perspective: 1200px;
+  }
+
+  .cap-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--wp-blue), var(--wp-accent));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cap-card:hover {
+      transform: translateY(-8px) rotateX(4deg) scale(1.02);
+      border-color: rgba(6, 147, 227, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 115, 170, 0.2);
+    }
+    .cap-card:hover::before {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: none) {
+    .cap-card:active {
+      transform: scale(0.98);
+      border-color: var(--wp-accent);
+    }
+  }
+
+  .cap-icon {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: 0.85rem;
+    display: inline-block;
+  }
+
+  .cap-title {
+    font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .cap-desc {
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.925rem);
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  .cap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .cap-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--wp-accent);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* SECTION 2: Interactive Package Explorer */
+  .explorer-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    backdrop-filter: blur(12px);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+    transition: border-color 0.2s;
+  }
+
+  .search-box:focus-within {
+    border-color: var(--wp-accent);
+    box-shadow: 0 0 0 3px rgba(6, 147, 227, 0.2);
+  }
+
+  .search-icon {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+  }
+
+  .search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
+  }
+
+  .search-input::placeholder {
+    color: var(--text-dim);
+  }
+
+  /* Filter Pills */
+  .category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cat-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .cat-btn.active {
+    background: var(--wp-blue);
+    color: #ffffff;
+    border-color: var(--wp-accent);
+    box-shadow: 0 4px 12px var(--wp-blue-glow);
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .counter-badge {
+    color: var(--wp-accent);
+    font-weight: 700;
+  }
+
+  /* Packages Grid */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    perspective: 1000px;
+  }
+
+  .pkg-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.2rem, 2.5vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pkg-card:hover {
+      transform: translateY(-5px) scale(1.015);
+      border-color: rgba(6, 147, 227, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  @media (hover: none) {
+    .pkg-card:active {
+      background: rgba(25, 36, 60, 0.95);
+      border-color: var(--wp-accent);
+    }
+  }
+
+  .pkg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  .pkg-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+    font-weight: 700;
+    color: #ffffff;
+    word-break: break-word;
+  }
+
+  .pkg-category-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  .badge-content { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+  .badge-blocks { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+  .badge-data { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+  .badge-screens { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.3); }
+  .badge-ui { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+  .badge-interactivity { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.3); }
+  .badge-utils { background: rgba(100, 116, 139, 0.2); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+  .badge-devtools { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+
+  .pkg-desc {
+    font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.88rem);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .pkg-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 115, 170, 0.15);
+    color: var(--wp-accent);
+    border: 1px solid rgba(6, 147, 227, 0.3);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pkg-link-btn:hover {
+      background: var(--wp-blue);
+      color: #ffffff;
+      border-color: var(--wp-blue);
+      box-shadow: 0 4px 12px var(--wp-blue-glow);
+    }
+  }
+
+  @media (hover: none) {
+    .pkg-link-btn:active {
+      background: var(--wp-blue-dark);
+      color: #ffffff;
+    }
+  }
+
+  /* Empty State */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-dim);
+    display: none;
+  }
+
+  .empty-state-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: clamp(3rem, 7vw, 5rem);
+    border-top: 1px solid var(--bg-card-border);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+  }
+
+  .footer a {
+    color: var(--wp-accent);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- HERO SECTION WITH 3D WORDPRESS BADGE -->
+  <header class="hero">
+    <div class="wp-badge-3d" title="WordPress Gutenberg Official Ecosystem">
+      <svg class="wp-logo-svg" viewBox="0 0 122.5 122.5" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.7 61.3c0 20.7 12 38.6 29.5 47.1L12.5 37.8C10.1 45 8.7 53 8.7 61.3zm89.9-1.9c0-6.7-2.4-11.4-4.5-15.1-2.7-4.5-5.3-8.3-5.3-12.8 0-5 3.8-9.7 9.2-9.7.2 0 .5 0 .7.1-10.4-9.5-24.2-15.2-39.4-15.2-19.4 0-36.5 9.4-47.3 23.9 1.3 0 2.6.1 3.7.1 5.9 0 15.1-.7 15.1-.7 3.1-.2 3.5 4.4.4 4.7 0 0-3.1.4-6.6.6l20.9 62.1 12.6-37.7-9-24.4c-3.1-.2-6-.6-6-.6-3.1-.2-2.7-4.9.4-4.7 0 0 9.4.7 14.9.7 5.9 0 15.1-.7 15.1-.7 3.1-.2 3.5 4.4.4 4.7 0 0-3.1.4-6.6.6l20.7 61.4 5.7-19c2.3-7.5 4.1-13 4.1-17.7zM62.6 68.3l-17.2 50c5 1.5 10.3 2.3 15.8 2.3 6.6 0 12.9-1.2 18.7-3.3-.3-.5-.6-1-.8-1.5L62.6 68.3zm42.7-32.9c.4 2.2.6 4.6.6 7.3 0 7.3-1.4 15.4-5.5 25.8l-17.3 50.1c18.5-8.2 31.4-26.6 31.4-48.1 0-8.9-1.9-17.3-5.2-24.9-1.4-.4-2.8-.2-4-.2zM61.3 0C27.4 0 0 27.4 0 61.3s27.4 61.3 61.3 61.3 61.3-27.4 61.3-61.3S95.1 0 61.3 0z"/>
+      </svg>
+    </div>
+    <div class="hero-tag">⚡ EKOSISTEM RESMI WORDPRESS GUTENBERG</div>
+    <h1 class="hero-title">Eksplorasi Interaktif 3D: Paket Resmi WordPress</h1>
+    <p class="hero-desc">Panduan komprehensif 126 paket JavaScript modular resmi (@wordpress/*) untuk membangun blok kustom, panel admin canggih, alur data interaktif, dan otomasi web modern.</p>
+  </header>
+
+  <!-- SECTION 1: WHAT YOU CAN BUILD (CAPABILITIES) -->
+  <section>
+    <div class="section-heading">
+      <h2 class="section-title">🚀 Apa Saja yang Bisa Dibangun?</h2>
+      <p class="section-subtitle">Tujuh pilar proyek nyata yang dapat diciptakan menggunakan kombinasi paket-paket ini.</p>
+    </div>
+
+    <div class="capabilities-grid">
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">🧱</div>
+            <h3 class="cap-title">Custom Gutenberg Blocks</h3>
+            <p class="cap-desc">Bangun elemen konten kustom seperti FAQ accordion, slider interaktif, tabel kalkulator harga, hingga blok formulir khusus.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/blocks</span><span class="cap-tag">@wordpress/block-editor</span><span class="cap-tag">@wordpress/components</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">⚙️</div>
+            <h3 class="cap-title">Sidebar & Custom Meta Boxes</h3>
+            <p class="cap-desc">Perluas layar edit WP-Admin dengan checklist standar editorial, custom input box, validasi dokter, dan kontrol rilis postingan.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/plugins</span><span class="cap-tag">@wordpress/edit-post</span><span class="cap-tag">@wordpress/editor</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">📊</div>
+            <h3 class="cap-title">Modern Admin Data Views (WP 6.5+)</h3>
+            <p class="cap-desc">Ubah tabel artikel biasa menjadi dashboard dinamis dengan filter canggih, tampilan kartu foto Grid, dan papan Kanban alur kerja.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/dataviews</span><span class="cap-tag">@wordpress/core-data</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">⚡</div>
+            <h3 class="cap-title">Frontend Cepat Tanpa Reload</h3>
+            <p class="cap-desc">Ciptakan fitur pencarian instan, filter kategori realtime, dan navigasi halaman cepat seperti aplikasi mobile (SPA).</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/interactivity</span><span class="cap-tag">@wordpress/interactivity-router</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">✍️</div>
+            <h3 class="cap-title">Editor Teks & Mesin Olah Kata</h3>
+            <p class="cap-desc">Bangun aplikasi editor tulisan mandiri dengan penghitung kata berstandar Gutenberg, pemformat teks kaya, dan auto-paragraf.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/wordcount</span><span class="cap-tag">@wordpress/rich-text</span><span class="cap-tag">@wordpress/autop</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">🔄</div>
+            <h3 class="cap-title">Parser & Migrasi Konten Massal</h3>
+            <p class="cap-desc">Konversi naskah HTML mentah menjadi format blok resmi WordPress yang aman dan siap diimpor langsung ke database.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/block-serialization-default-parser</span>
+          </div>
+        </div>
+      
+        <div class="cap-card">
+          <div>
+            <div class="cap-icon">🤖</div>
+            <h3 class="cap-title">Robot Pengujian Website Otomatis</h3>
+            <p class="cap-desc">Simulasi alur pengguna dan pengujian klik tombol, pengisian form, dan pembuatan artikel secara otomatis di browser asli.</p>
+          </div>
+          <div class="cap-tags">
+            <span class="cap-tag">@wordpress/e2e-test-utils-playwright</span><span class="cap-tag">@wordpress/env</span>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <!-- SECTION 2: INTERACTIVE PACKAGES EXPLORER -->
+  <section id="packages-explorer">
+    <div class="section-heading">
+      <h2 class="section-title">📦 Katalog Lengkap 126 Package Resmi</h2>
+      <p class="section-subtitle">Cari dan jelajahi seluruh modul resmi dengan tautan rujukan langsung ke dokumentasi WordPress Developer.</p>
+    </div>
+
+    <div class="explorer-bar">
+      <!-- Live Search Box -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Ketik nama package (misal: wordcount, blocks, api, rich-text)..." autocomplete="off">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPills">
+        
+          <button class="cat-btn active" data-cat="all">
+            <span>🌐</span> Semua Package
+          </button>
+        
+          <button class="cat-btn " data-cat="content">
+            <span>✍️</span> Konten & Teks
+          </button>
+        
+          <button class="cat-btn " data-cat="blocks">
+            <span>🧱</span> Blok & Tata Letak
+          </button>
+        
+          <button class="cat-btn " data-cat="data">
+            <span>🔄</span> Data & REST API
+          </button>
+        
+          <button class="cat-btn " data-cat="screens">
+            <span>🖥️</span> Layar Editor WP
+          </button>
+        
+          <button class="cat-btn " data-cat="ui">
+            <span>🎨</span> Komponen Desain
+          </button>
+        
+          <button class="cat-btn " data-cat="interactivity">
+            <span>⚡</span> Interaktivitas Cepat
+          </button>
+        
+          <button class="cat-btn " data-cat="utils">
+            <span>🛠️</span> Utilitas & Event
+          </button>
+        
+          <button class="cat-btn " data-cat="devtools">
+            <span>🚀</span> Developer & Testing
+          </button>
+        
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div>Menampilkan <span id="matchCount" class="counter-badge">126</span> dari 126 packages</div>
+      <div id="activeFilterLabel" style="font-size:0.8rem;">Semua Kategori</div>
+    </div>
+
+    <!-- The 126 Packages Grid -->
+    <div class="packages-grid" id="packagesGrid">
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/build readme" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/build README</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guide/packages/packages-wp-build/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/build README">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/custom-templated-path-webpack-plugin" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/custom-templated-path-webpack-plugin</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-custom-templated-path-webpack-plugin/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/custom-templated-path-webpack-plugin">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/experiments" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/experiments</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-experiments/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/experiments">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/library-export-default-webpack-plugin" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/library-export-default-webpack-plugin</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-library-export-default-webpack-plugin/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/library-export-default-webpack-plugin">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/a11y" data-desc="notifikasi suara aksesibilitas untuk screen reader pengguna disabilitas netra.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/a11y</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Notifikasi suara aksesibilitas untuk screen reader pengguna disabilitas netra.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-a11y/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/a11y">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/abilities" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/abilities</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/abilities">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/admin-ui" data-desc="komponen dan layout untuk antarmuka panel administrasi modern.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/admin-ui</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Komponen dan layout untuk antarmuka panel administrasi modern.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-admin-ui/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/admin-ui">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/annotations" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/annotations</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-annotations/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/annotations">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/api-fetch" data-desc="wrapper resmi fetch() untuk rest api wordpress dengan nonce keamanan dan auth otomatis.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/api-fetch</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Wrapper resmi fetch() untuk REST API WordPress dengan nonce keamanan dan auth otomatis.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/api-fetch">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/asset-loader" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/asset-loader</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-asset-loader/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/asset-loader">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/autop" data-desc="mengubah karakter enter/baris baru menjadi tag paragraf html <p> secara otomatis.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/autop</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Mengubah karakter enter/baris baru menjadi tag paragraf HTML <p> secara otomatis.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-autop/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/autop">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/babel-plugin-import-jsx-pragma" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/babel-plugin-import-jsx-pragma</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-babel-plugin-import-jsx-pragma/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/babel-plugin-import-jsx-pragma">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/babel-plugin-makepot" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/babel-plugin-makepot</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-babel-plugin-makepot/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/babel-plugin-makepot">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/babel-preset-default" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/babel-preset-default</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-babel-preset-default/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/babel-preset-default">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/base-styles" data-desc="fondasi reset css dan variabel desain dasar untuk gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/base-styles</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Fondasi reset CSS dan variabel desain dasar untuk Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-base-styles/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/base-styles">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/blob" data-desc="utilitas pembuatan dan manajemen data biner blob serta url file temporer.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/blob</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Utilitas pembuatan dan manajemen data biner Blob serta URL file temporer.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blob/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/blob">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/block-directory" data-desc="integrasi pencarian dan instalasi blok langsung dari direktori wordpress.org.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/block-directory</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Integrasi pencarian dan instalasi blok langsung dari direktori WordPress.org.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-directory/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/block-directory">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/block-editor" data-desc="kanvas visual editor blok, toolbar melayang, dan panel inspector sidebar.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/block-editor</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Kanvas visual editor blok, toolbar melayang, dan panel inspector sidebar.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/block-editor">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/block-library" data-desc="perpustakaan blok bawaan inti wordpress (paragraph, heading, columns, table, dll).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/block-library</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Perpustakaan blok bawaan inti WordPress (Paragraph, Heading, Columns, Table, dll).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-library/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/block-library">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/block-serialization-default-parser" data-desc="parser resmi pengubah komentar html gutenberg menjadi objek javascript.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/block-serialization-default-parser</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Parser resmi pengubah komentar HTML Gutenberg menjadi objek JavaScript.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-serialization-default-parser/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/block-serialization-default-parser">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/block-serialization-spec-parser" data-desc="grammar parser blok gutenberg berbasis spesifikasi formal peg.js.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/block-serialization-spec-parser</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Grammar parser blok Gutenberg berbasis spesifikasi formal PEG.js.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-serialization-spec-parser/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/block-serialization-spec-parser">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/blocks" data-desc="pendaftaran blok baru (registerblocktype), konfigurasi atribut, dan validasi skema blok.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/blocks</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Pendaftaran blok baru (registerBlockType), konfigurasi atribut, dan validasi skema blok.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/blocks">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/boot" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/boot</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-boot/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/boot">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/browserslist-config" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/browserslist-config</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-browserslist-config/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/browserslist-config">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/commands" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/commands</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-commands/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/commands">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/components" data-desc="library komponen react ui resmi wordpress (button, modal, panel, toggle, dropdown).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/components</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Library komponen React UI resmi WordPress (Button, Modal, Panel, Toggle, Dropdown).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/components">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/compose" data-desc="kumpulan react custom hooks dan hoc lanjutan (usedebounce, useinstanceid, dll).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/compose</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Kumpulan React custom hooks dan HOC lanjutan (useDebounce, useInstanceId, dll).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/compose">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/core-abilities" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/core-abilities</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-abilities/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/core-abilities">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/core-commands" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/core-commands</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-commands/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/core-commands">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/core-data" data-desc="pengelola entitas bawaan wordpress (postingan, halaman, taksonomi, user, media).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/core-data</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Pengelola entitas bawaan WordPress (postingan, halaman, taksonomi, user, media).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/core-data">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/create-block-interactive-template" data-desc="template scaffolding untuk inisialisasi blok dan plugin baru.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/create-block-interactive-template</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Template scaffolding untuk inisialisasi blok dan plugin baru.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-create-block-interactive-template/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/create-block-interactive-template">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/create-block-tutorial-template" data-desc="template scaffolding untuk inisialisasi blok dan plugin baru.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/create-block-tutorial-template</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Template scaffolding untuk inisialisasi blok dan plugin baru.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-create-block-tutorial-template/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/create-block-tutorial-template">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/create-block" data-desc="cli resmi pembuat scaffolding plugin blok gutenberg baru dalam sekejap.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/create-block</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">CLI resmi pembuat scaffolding plugin blok Gutenberg baru dalam sekejap.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-create-block/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/create-block">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/customize-widgets" data-desc="integrasi blok widget di dalam layar wordpress customizer.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/customize-widgets</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Integrasi blok widget di dalam layar WordPress Customizer.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-customize-widgets/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/customize-widgets">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/data-controls" data-desc="generator side effects asynchronous untuk state management @wordpress/data.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/data-controls</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Generator side effects asynchronous untuk state management @wordpress/data.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data-controls/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/data-controls">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/data" data-desc="state management resmi berbasis redux terintegrasi (dispatch, select, subscribe).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/data</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">State management resmi berbasis Redux terintegrasi (dispatch, select, subscribe).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/data">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/dataviews" data-desc="komponen ui modern untuk menyajikan data dalam bentuk tabel dinamis, grid, dan kanban.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/dataviews</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Komponen UI modern untuk menyajikan data dalam bentuk Tabel dinamis, Grid, dan Kanban.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dataviews/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/dataviews">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/date" data-desc="format tanggal dan waktu otomatis tersinkron dengan zona waktu wordpress (wib).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/date</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Format tanggal dan waktu otomatis tersinkron dengan zona waktu WordPress (WIB).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-date/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/date">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/dependency-extraction-webpack-plugin" data-desc="ekstraktor dependensi script otomatis untuk script php wp-includes.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/dependency-extraction-webpack-plugin</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Ekstraktor dependensi script otomatis untuk script PHP wp-includes.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/dependency-extraction-webpack-plugin">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/deprecated" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/deprecated</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-deprecated/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/deprecated">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/design-system-mcp" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/design-system-mcp</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-design-system-mcp/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/design-system-mcp">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/docgen" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/docgen</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-docgen/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/docgen">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/dom-ready" data-desc="helper eksekusi fungsi setelah dom html selesai di-render.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/dom-ready</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Helper eksekusi fungsi setelah DOM HTML selesai di-render.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/dom-ready">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/dom" data-desc="utilitas manipulasi elemen dom, trap focus keyboard, dan navigasi tab.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/dom</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Utilitas manipulasi elemen DOM, trap focus keyboard, dan navigasi tab.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/dom">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/e2e-test-utils-playwright" data-desc="helper pengujian otomatis end-to-end (e2e) editor menggunakan playwright.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/e2e-test-utils-playwright</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Helper pengujian otomatis end-to-end (E2E) editor menggunakan Playwright.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-e2e-test-utils-playwright/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/e2e-test-utils-playwright">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/e2e-tests" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/e2e-tests</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-e2e-tests/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/e2e-tests">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/edit-post" data-desc="layar aplikasi editor postingan lengkap di wp admin (/wp-admin/post.php).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/edit-post</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Layar aplikasi editor postingan lengkap di WP Admin (/wp-admin/post.php).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/edit-post">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/edit-site" data-desc="layar full site editing (fse) untuk kustomisasi template dan tema global.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/edit-site</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Layar Full Site Editing (FSE) untuk kustomisasi template dan tema global.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-site/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/edit-site">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/edit-widgets" data-desc="layar pengelola widget berbasis blok pada wp admin.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/edit-widgets</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Layar pengelola widget berbasis blok pada WP Admin.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-widgets/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/edit-widgets">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/editor" data-desc="konteks dokumen postingan (status, visibility, permalink, excerpt, featured image).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/editor</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Konteks dokumen postingan (Status, Visibility, Permalink, Excerpt, Featured Image).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-editor/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/editor">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/element" data-desc="lapisan abstraksi resmi di atas react (createelement, usestate, useeffect).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/element</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Lapisan abstraksi resmi di atas React (createElement, useState, useEffect).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/element">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/env" data-desc="menjalankan lingkungan wordpress lokal lengkap dengan docker (wp-env start).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/env</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Menjalankan lingkungan WordPress lokal lengkap dengan Docker (wp-env start).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/env">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/escape-html" data-desc="sanitasi keamanan teks untuk mencegah injeksi skrip berbahaya (xss prevention).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/escape-html</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Sanitasi keamanan teks untuk mencegah injeksi skrip berbahaya (XSS prevention).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-escape-html/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/escape-html">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/eslint-plugin" data-desc="konfigurasi linter eslint resmi sesuai standar kode wordpress coding standards.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/eslint-plugin</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Konfigurasi linter ESLint resmi sesuai standar kode WordPress Coding Standards.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-eslint-plugin/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/eslint-plugin">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/fields" data-desc="koleksi field formulir input data standar untuk editor dan admin.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/fields</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Koleksi field formulir input data standar untuk editor dan admin.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-fields/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/fields">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/format-library" data-desc="kumpulan tombol pemformatan teks bawaan (bold, code, strikethrough, subscript, inline image).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/format-library</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Kumpulan tombol pemformatan teks bawaan (bold, code, strikethrough, subscript, inline image).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-format-library/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/format-library">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/global-styles-engine" data-desc="engine penerjemah konfigurasi theme.json menjadi stylesheet dan css variables.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/global-styles-engine</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Engine penerjemah konfigurasi theme.json menjadi stylesheet dan CSS variables.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-global-styles-engine/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/global-styles-engine">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/global-styles-ui" data-desc="antarmuka visual untuk mengatur warna, tipografi, dan layout global tema.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/global-styles-ui</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Antarmuka visual untuk mengatur warna, tipografi, dan layout global tema.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-global-styles-ui/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/global-styles-ui">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/grid" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/grid</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-grid/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/grid">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/hooks" data-desc="sistem event hooks addaction dan addfilter versi javascript persis seperti php wp.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/hooks</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Sistem event hooks addAction dan addFilter versi JavaScript persis seperti PHP WP.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/hooks">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/html-entities" data-desc="utilitas encode dan decode karakter entitas html (&amp;, &quot;, &lt;, dll).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/html-entities</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Utilitas encode dan decode karakter entitas HTML (&amp;, &quot;, &lt;, dll).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/html-entities">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/i18n" data-desc="internasionalisasi teks dan sistem lokalisasi multi-bahasa (__(), _n(), sprintf).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/i18n</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Internasionalisasi teks dan sistem lokalisasi multi-bahasa (__(), _n(), sprintf).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/i18n">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/icons" data-desc="koleksi lengkap ikon svg resmi standar wordpress dashicons / gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/icons</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Koleksi lengkap ikon SVG resmi standar WordPress Dashicons / Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/icons">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/image-cropper" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/image-cropper</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-image-cropper/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/image-cropper">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="interactivity" data-name="@wordpress/interactivity-router" data-desc="router navigasi instan antar halaman seperti single page app (spa).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/interactivity-router</span>
+              <span class="pkg-category-badge badge-interactivity">interactivity</span>
+            </div>
+            <p class="pkg-desc">Router navigasi instan antar halaman seperti Single Page App (SPA).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity-router/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/interactivity-router">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="interactivity" data-name="@wordpress/interactivity" data-desc="framework interaksi cepat sisi browser (pencarian instan, filter, popup tanpa reload).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/interactivity</span>
+              <span class="pkg-category-badge badge-interactivity">interactivity</span>
+            </div>
+            <p class="pkg-desc">Framework interaksi cepat sisi browser (pencarian instan, filter, popup tanpa reload).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/interactivity">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/interface" data-desc="struktur layout dasar antarmuka editor (header, sidebar, kanvas kerja).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/interface</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Struktur layout dasar antarmuka editor (header, sidebar, kanvas kerja).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interface/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/interface">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/is-shallow-equal" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/is-shallow-equal</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-is-shallow-equal/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/is-shallow-equal">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/jest-console" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/jest-console</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-jest-console/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/jest-console">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/jest-preset-default" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/jest-preset-default</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-jest-preset-default/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/jest-preset-default">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/kebab-case" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/kebab-case</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-kebab-case/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/kebab-case">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/keyboard-shortcuts" data-desc="pendaftaran dan penanganan shortcut keyboard kustom dalam editor.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/keyboard-shortcuts</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Pendaftaran dan penanganan shortcut keyboard kustom dalam editor.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-keyboard-shortcuts/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/keyboard-shortcuts">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/keycodes" data-desc="deteksi kode tombol keyboard (enter, escape, arrow) dan shortcut kombinasi.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/keycodes</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Deteksi kode tombol keyboard (Enter, Escape, Arrow) dan shortcut kombinasi.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-keycodes/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/keycodes">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/latex-to-mathml" data-desc="konversi rumus matematika latex menjadi format mathml yang ramah web.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/latex-to-mathml</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Konversi rumus matematika LaTeX menjadi format MathML yang ramah web.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-latex-to-mathml/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/latex-to-mathml">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/lazy-editor" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/lazy-editor</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-lazy-editor/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/lazy-editor">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/lazy-import" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/lazy-import</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-lazy-import/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/lazy-import">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="screens" data-name="@wordpress/list-reusable-blocks" data-desc="layar antarmuka manajemen seluruh reusable blocks yang tersimpan.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/list-reusable-blocks</span>
+              <span class="pkg-category-badge badge-screens">screens</span>
+            </div>
+            <p class="pkg-desc">Layar antarmuka manajemen seluruh reusable blocks yang tersimpan.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-list-reusable-blocks/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/list-reusable-blocks">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/media-editor" data-desc="pengelolaan input, upload, dan manipulasi media gambar/audio/video.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/media-editor</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan input, upload, dan manipulasi media gambar/audio/video.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-editor/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/media-editor">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/media-fields" data-desc="pengelolaan input, upload, dan manipulasi media gambar/audio/video.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/media-fields</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan input, upload, dan manipulasi media gambar/audio/video.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-fields/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/media-fields">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/media-utils" data-desc="helper pengunggah file media gambar/video ke library wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/media-utils</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Helper pengunggah file media gambar/video ke library WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-utils/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/media-utils">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/notices" data-desc="sistem pemberitahuan status dan notifikasi toast (sukses, peringatan, error).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/notices</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Sistem pemberitahuan status dan notifikasi toast (sukses, peringatan, error).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-notices/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/notices">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/npm-package-json-lint-config" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/npm-package-json-lint-config</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-npm-package-json-lint-config/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/npm-package-json-lint-config">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/nux" data-desc="new user experience: sistem panduan tur interaktif pengenalan fitur baru bagi pemula.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/nux</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">New User Experience: sistem panduan tur interaktif pengenalan fitur baru bagi pemula.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-nux/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/nux">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/patterns" data-desc="pengelola pola tata letak blok (block patterns) siap pakai untuk mempercepat desain.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/patterns</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Pengelola pola tata letak blok (Block Patterns) siap pakai untuk mempercepat desain.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-patterns/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/patterns">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/plugins" data-desc="sistem pendaftaran plugin javascript untuk memperluas fitur gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/plugins</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Sistem pendaftaran plugin JavaScript untuk memperluas fitur Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/plugins">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/postcss-plugins-preset" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/postcss-plugins-preset</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-postcss-plugins-preset/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/postcss-plugins-preset">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/postcss-themes" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/postcss-themes</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-postcss-themes/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/postcss-themes">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/preferences-persistence" data-desc="adapter persistensi data preferensi ke localstorage atau database user.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/preferences-persistence</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Adapter persistensi data preferensi ke localStorage atau database user.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-preferences-persistence/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/preferences-persistence">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/preferences" data-desc="penyimpan pengaturan preferensi editor pengguna secara lokal maupun cloud.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/preferences</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Penyimpan pengaturan preferensi editor pengguna secara lokal maupun cloud.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-preferences/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/preferences">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/prettier-config" data-desc="konfigurasi pemformat kode otomatis prettier standar wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/prettier-config</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Konfigurasi pemformat kode otomatis Prettier standar WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-prettier-config/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/prettier-config">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/primitives" data-desc="komponen dasar pembentuk elemen svg dan kanvas lintas platform (svg, path, rect).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/primitives</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Komponen dasar pembentuk elemen SVG dan kanvas lintas platform (SVG, Path, Rect).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-primitives/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/primitives">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/priority-queue" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/priority-queue</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-priority-queue/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/priority-queue">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/private-apis" data-desc="mekanisme isolasi api privat antar paket internal gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/private-apis</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Mekanisme isolasi API privat antar paket internal Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-private-apis/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/private-apis">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/project-management-automation" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/project-management-automation</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-project-management-automation/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/project-management-automation">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/react-i18n" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/react-i18n</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-react-i18n/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/react-i18n">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/readable-js-assets-webpack-plugin" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/readable-js-assets-webpack-plugin</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-readable-js-assets-webpack-plugin/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/readable-js-assets-webpack-plugin">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="data" data-name="@wordpress/redux-routine" data-desc="middleware redux untuk menangani action berulang dan kontrol generator.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/redux-routine</span>
+              <span class="pkg-category-badge badge-data">data</span>
+            </div>
+            <p class="pkg-desc">Middleware Redux untuk menangani action berulang dan kontrol generator.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-redux-routine/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/redux-routine">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/reusable-blocks" data-desc="pengelola blok global (synced patterns) yang dapat digunakan berulang di banyak post.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/reusable-blocks</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Pengelola blok global (Synced Patterns) yang dapat digunakan berulang di banyak post.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-reusable-blocks/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/reusable-blocks">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/rich-text" data-desc="mesin pemformatan teks kaya (bold, italic, link, annotasi warna) di dalam blok.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/rich-text</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Mesin pemformatan teks kaya (bold, italic, link, annotasi warna) di dalam blok.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-rich-text/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/rich-text">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/route" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/route</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-route/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/route">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/router" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/router</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-router/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/router">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/scripts" data-desc="toolchain build resmi pengemas kode (webpack, babel, jest, linter) cukup 1 perintah.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/scripts</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Toolchain build resmi pengemas kode (Webpack, Babel, Jest, Linter) cukup 1 perintah.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/scripts">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/server-side-render" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/server-side-render</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/server-side-render">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/shortcode" data-desc="parser dan serialisasi shortcode wordpress ([gallery], [contact-form], dll).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/shortcode</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Parser dan serialisasi shortcode WordPress ([gallery], [contact-form], dll).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-shortcode/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/shortcode">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/style-engine" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/style-engine</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-style-engine/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/style-engine">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/style-engine using the style engine to generate block supports styles" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/style-engine Using the Style Engine to generate block supports styles</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-style-engine/using-the-style-engine-with-block-supports/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/style-engine Using the Style Engine to generate block supports styles">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/style-runtime" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/style-runtime</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-style-runtime/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/style-runtime">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/stylelint-config" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/stylelint-config</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-stylelint-config/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/stylelint-config">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/sync" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/sync</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-sync/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/sync">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="ui" data-name="@wordpress/theme" data-desc="pengelolaan tema, stylesheet, dan aset styling visual wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/theme</span>
+              <span class="pkg-category-badge badge-ui">ui</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan tema, stylesheet, dan aset styling visual WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-theme/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/theme">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/token-list" data-desc="manipulasi daftar token dan class string seperti classlist di dom.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/token-list</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Manipulasi daftar token dan class string seperti classList di DOM.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-token-list/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/token-list">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/ui" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/ui</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-ui/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/ui">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/undo-manager" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/undo-manager</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-undo-manager/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/undo-manager">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/upload-media" data-desc="pengelolaan input, upload, dan manipulasi media gambar/audio/video.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/upload-media</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Pengelolaan input, upload, dan manipulasi media gambar/audio/video.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-upload-media/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/upload-media">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/url" data-desc="utilitas manipulasi url, pemecah parameter query, dan validasi link.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/url</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Utilitas manipulasi URL, pemecah parameter query, dan validasi link.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-url/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/url">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/video-conversion" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/video-conversion</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-video-conversion/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/video-conversion">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/viewport" data-desc="deteksi ukuran layar viewport pembaca secara dinamis (mobile, tablet, desktop).">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/viewport</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Deteksi ukuran layar viewport pembaca secara dinamis (mobile, tablet, desktop).</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-viewport/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/viewport">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/views" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/views</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-views/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/views">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/vips" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/vips</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-vips/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/vips">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/warning" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/warning</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-warning/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/warning">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/widget-dashboard" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/widget-dashboard</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-widget-dashboard/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/widget-dashboard">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/widget-primitives" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/widget-primitives</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-widget-primitives/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/widget-primitives">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="blocks" data-name="@wordpress/widgets" data-desc="komponen penanganan widget wordpress berbasis blok.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/widgets</span>
+              <span class="pkg-category-badge badge-blocks">blocks</span>
+            </div>
+            <p class="pkg-desc">Komponen penanganan widget WordPress berbasis blok.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-widgets/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/widgets">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="content" data-name="@wordpress/wordcount" data-desc="menghitung kata, karakter, dan estimasi waktu membaca standar resmi gutenberg editor.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/wordcount</span>
+              <span class="pkg-category-badge badge-content">content</span>
+            </div>
+            <p class="pkg-desc">Menghitung kata, karakter, dan estimasi waktu membaca standar resmi Gutenberg editor.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-wordcount/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/wordcount">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="utils" data-name="@wordpress/worker-threads" data-desc="modul pendukung resmi wordpress untuk fungsi spesifik di dalam gutenberg.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/worker-threads</span>
+              <span class="pkg-category-badge badge-utils">utils</span>
+            </div>
+            <p class="pkg-desc">Modul pendukung resmi WordPress untuk fungsi spesifik di dalam Gutenberg.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-worker-threads/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/worker-threads">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+        <div class="pkg-card" data-cat="devtools" data-name="@wordpress/build" data-desc="peralatan pengembangan, pengujian, atau build pipeline untuk proyek wordpress.">
+          <div>
+            <div class="pkg-header">
+              <span class="pkg-name">@wordpress/build</span>
+              <span class="pkg-category-badge badge-devtools">devtools</span>
+            </div>
+            <p class="pkg-desc">Peralatan pengembangan, pengujian, atau build pipeline untuk proyek WordPress.</p>
+          </div>
+          <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/packages-wp-build/" target="_blank" rel="noopener noreferrer" class="pkg-link-btn" title="Buka Dokumentasi Resmi @wordpress/build">
+            Dokumentasi Resmi ↗
+          </a>
+        </div>
+      
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-state-icon">🔎</div>
+        <p>Tidak ada package yang cocok dengan pencarian Anda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Dokumentasi resmi: <a href="https://developer.wordpress.org/block-editor/reference-guides/packages/" target="_blank" rel="noopener noreferrer">developer.wordpress.org/block-editor/reference-guides/packages/</a></p>
+    <p style="margin-top:6px;">Dibuat dengan standar performa tinggi, 60fps native CSS 3D transforms, dan fluid responsive mobile-first.</p>
+  </footer>
+
+</div>
+
+<!-- INTERACTIVITY SCRIPT (Zero External Dependencies, Pure Vanilla JS) -->
+<script>
+(function() {
+  const searchInput = document.getElementById('searchInput');
+  const catButtons = document.querySelectorAll('.cat-btn');
+  const pkgCards = document.querySelectorAll('.pkg-card');
+  const matchCount = document.getElementById('matchCount');
+  const emptyState = document.getElementById('emptyState');
+  const filterLabel = document.getElementById('activeFilterLabel');
+
+  let currentCat = 'all';
+  let searchQuery = '';
+
+  function filterPackages() {
+    let visibleCount = 0;
+
+    pkgCards.forEach(card => {
+      const cardCat = card.getAttribute('data-cat');
+      const cardName = card.getAttribute('data-name');
+      const cardDesc = card.getAttribute('data-desc');
+
+      const matchesCat = (currentCat === 'all') || (cardCat === currentCat);
+      const matchesSearch = !searchQuery || cardName.includes(searchQuery) || cardDesc.includes(searchQuery);
+
+      if (matchesCat && matchesSearch) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    matchCount.textContent = visibleCount;
+    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  // Search Input Handler
+  searchInput.addEventListener('input', function(e) {
+    searchQuery = e.target.value.toLowerCase().trim();
+    filterPackages();
+  });
+
+  // Category Pills Handler
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      catButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentCat = this.getAttribute('data-cat');
+      filterLabel.textContent = this.textContent.trim();
+      filterPackages();
+    });
+  });
+
+  // Desktop Mouse Parallax / 3D Tilt for Capability Cards
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const cards = document.querySelectorAll('.cap-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', function(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
