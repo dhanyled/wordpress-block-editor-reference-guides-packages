@@ -1,48 +1,62 @@
-# 🌐 WordPress Block Editor Reference Guides & Packages Master Catalog
+# Katalog Interaktif 400+ Modul & Paket Resmi WordPress Gutenberg
 
-Interactive 3D Fluid-Responsive Master Showcase of all **401 official WordPress resources** powering the Gutenberg editor and modern WordPress ecosystem:
-- 📦 **124 Official NPM Packages** (`@wordpress/*`)
-- 📚 **18 Block API Tutorials & Architecture Guides**
-- 🎨 **130 React UI Components Reference & Tutorials**
-- 🧱 **129 Core Blocks Technical Documentation**
+> Panduan praktis, interaktif 3D, dan responsif untuk seluruh ekosistem **WordPress Block Editor (Gutenberg)**: mencakup 124 Paket NPM Resmi (termasuk 20 paket Standalone yang bisa dipakai di luar WordPress), 18 Tutorial Block API, 131 Komponen UI React, dan 128 Blok Core Bawaan.
 
 ---
 
-## 🚀 Live Interactive Demo
-- **GitHub Pages / Vercel Ready:** Just open `index.html` in your browser.
-- **Official Documentation Source:** [developer.wordpress.org/block-editor/reference-guides/](https://developer.wordpress.org/block-editor/reference-guides/)
+## 🌟 Fitur Utama
+
+- **401 Sumber Daya Terverifikasi:** 100% dipetakan dari dokumentasi resmi [WordPress Developer Handbook](https://developer.wordpress.org/block-editor/reference-guides/).
+- **🌍 20 Paket Standalone (Bisa di Luar WordPress):** Modul-modul resmi yang 100% agnostic/mandiri dan dapat diinstal via NPM di proyek **Node.js, Next.js, React, Vue, Express, atau CLI bot**.
+- **Contoh Implementasi & Sinergi Nyata:** Setiap modul dilengkapi fungsi praktis, contoh pemakaian di WordPress maupun luar WordPress, serta kombinasi paket pendukung.
+- **Bahasa Natural & Humanis:** Penjelasan santai, mengalir, lugas, dan bebas dari istilah kamus yang kaku.
+- **Akselerasi 3D & Mobile-First:** Efek 3D tilt pada desktop serta 2D sentuhan ringan pada layar HP/tablet.
+- **Pencarian Kilat & Tab Kategori:** Live filter instan tanpa reload untuk menyaring modul sesuai kebutuhan.
 
 ---
 
-## 🌟 Key Features
+## 📦 Komposisi 401 Sumber Daya
 
-1. **Concrete Implementation Examples & Package Synergies:**
-   - Every single card now includes **Contoh Implementasi** (practical application), **Sinergi Paket** (combining with 1 or more packages), and **Skenario Nyata** (real-world use case).
-2. **Device-Aware Scroll Animations:**
-   - **Desktop:** Hardware-accelerated 3D perspective tilt (`rotateX`) & entrance reveal as you scroll down the page.
-   - **Tablet & Mobile:** Lightweight 2D fade-up (`translateY(16px)` to `0`) without heavy 3D calculations, ensuring silky-smooth scrolling and zero battery drain on iOS & Android.
-   - **Accessibility:** Full compliance with `@media (prefers-reduced-motion: reduce)`.
-3. **Official WordPress 3D Branding:**
-   - Pure vector official WordPress SVG emblem with ambient floating glow.
-4. **Adaptive Desktop vs Mobile Experience:**
-   - **Desktop:** Perspective 3D mouse parallax tilt on capability cards (`@media (hover: hover) and (pointer: fine)`).
-   - **Mobile & Tablet:** Touch-safe animations (hover parallax disabled on touch devices to prevent sticky hover bugs, replaced with responsive `:active` tap feedback).
-5. **Fluid Responsive Typography & Layout:**
-   - Built using modern CSS `clamp()` for font sizes, padding, and gap spacing.
-   - Zero horizontal overflow from 360px mobile screens to 4K desktop displays.
-6. **Performance & Security First:**
-   - **Zero external bloat:** 100% native GPU-accelerated CSS 3D transforms (running at silky 60fps).
-   - Pure Vanilla JS for instantaneous search & filtering across 401 resources.
-   - Safe external outbound links with `rel="noopener noreferrer"`.
-7. **Interactive 4-in-1 Tabs & Live Search:**
-   - Tab 1: 📦 Official NPM Packages (124)
-   - Tab 2: 📚 Block API Guides & Tutorials (18)
-   - Tab 3: 🎨 React UI Components Reference (130)
-   - Tab 4: 🧱 Core Blocks Technical Documentation (129)
-   - Real-time instant search by name, implementation keyword, or description with one-click reset.
-   - Direct reference link to every single item's official WordPress documentation.
+| Kategori | Jumlah | Keterangan |
+|---|---|---|
+| 📦 **Paket NPM Resmi** | 124 | Modul utilitas, runtime, data, dan engine editor |
+| 🌍 **Paket Standalone** | 20 | Modul NPM yang bisa dipakai bebas di luar WordPress |
+| 📚 **Panduan & Tutorial Block API** | 18 | Arsitektur blok, atribut, variasi, dan panduan resmi |
+| 🎨 **Komponen UI React** | 131 | Tombol, modal popup, input form, dan komponen antarmuka |
+| 🧱 **Blok Core Bawaan** | 128 | Dokumentasi teknis seluruh blok resmi WordPress |
+| ✨ **TOTAL** | **401** | Sumber daya lengkap ekosistem Block Editor |
 
 ---
 
-## 📄 License
-MIT License. Open source and free to use.
+## 🌍 Contoh Paket yang Bisa Dipakai Bebas di Luar WordPress
+
+1. **`@wordpress/wordcount`:** Menghitung kata, karakter, dan estimasi waktu baca naskah di bot Node.js atau Next.js.
+2. **`@wordpress/autop`:** Mengubah spasi enter mentah menjadi paragraf `<p>` HTML yang rapi.
+3. **`@wordpress/block-serialization-default-parser`:** Mengubah teks postingan WordPress menjadi objek JSON di aplikasi Headless CMS.
+4. **`@wordpress/hooks`:** Sistem event pub-sub (Action & Filter) murni JavaScript di aplikasi React atau Vue apa pun.
+5. **`@wordpress/url`:** Utilitas manipulasi URL dan query param tanpa dependensi browser.
+6. **`@wordpress/i18n`:** Engine penerjemah bahasa standar Gettext (.po/.mo) yang super ringan.
+7. **`@wordpress/escape-html` & `@wordpress/html-entities`:** Sanitasi keamanan anti-XSS dan decode entitas HTML.
+8. **`@wordpress/shortcode`:** Parser kode shortcode `[shortcode]` di aplikasi custom non-WordPress.
+9. **`@wordpress/scripts`:** Bundler serbaguna satu perintah pengganti konfigurasi Webpack/Babel manual.
+
+---
+
+## 🚀 Cara Menjalankan
+
+Cukup buka berkas `index.html` di browser modern apa pun, atau pasang di server statis / GitHub Pages.
+
+```bash
+# Clone repositori
+git clone https://github.com/dhanyled/wordpress-block-editor-reference-guides-packages.git
+
+# Buka berkas
+cd wordpress-block-editor-reference-guides-packages
+# Buka index.html di browser favorit Anda
+```
+
+---
+
+## 📄 Lisensi & Referensi Resmi
+- **Dokumentasi Resmi:** [developer.wordpress.org/block-editor/reference-guides/](https://developer.wordpress.org/block-editor/reference-guides/)
+- **Lisensi WordPress:** GPL-2.0 / MIT.
