@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Internal Redaksi & Strategi Keyword GKP — HomeCare Lansia</title>
+<title>Dashboard Strategis Roadmap Konten 3 Bulan (Ags - Sep - Okt 2026) — HomeCare Lansia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,11 +13,8 @@
     --primary-glow: rgba(0, 115, 170, 0.35);
     --accent: #0693e3;
     --green: #10b981;
-    --green-bg: rgba(16, 185, 129, 0.12);
     --yellow: #f59e0b;
-    --yellow-bg: rgba(245, 158, 11, 0.12);
     --purple: #8b5cf6;
-    --purple-bg: rgba(139, 92, 246, 0.12);
     --bg-dark: #090d16;
     --bg-card: rgba(18, 26, 43, 0.95);
     --bg-card-border: rgba(255, 255, 255, 0.09);
@@ -48,7 +45,7 @@
   }
 
   .container {
-    max-width: 1480px;
+    max-width: 1520px;
     margin: 0 auto;
   }
 
@@ -69,7 +66,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #0073aa, #0693e3, #10b981);
+    background: linear-gradient(90deg, #10b981, #0693e3, #8b5cf6, #f59e0b);
   }
 
   .header-badge {
@@ -97,14 +94,14 @@
   .header-desc {
     color: var(--text-muted);
     font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
-    max-width: 960px;
+    max-width: 1000px;
     line-height: 1.6;
   }
 
   /* Stat KPIs */
   .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
     gap: 1rem;
     margin-top: 1.75rem;
   }
@@ -120,7 +117,7 @@
   }
 
   .kpi-label {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -134,10 +131,15 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
+  .kpi-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
   .kpi-value.green { color: #34d399; }
-  .kpi-value.yellow { color: #fbbf24; }
-  .kpi-value.blue { color: #60a5fa; }
+  .kpi-value.blue { color: #38bdf8; }
   .kpi-value.purple { color: #c084fc; }
+  .kpi-value.yellow { color: #fbbf24; }
 
   /* Navigation Tabs */
   .tabs-nav {
@@ -213,55 +215,7 @@
     font-size: 0.875rem;
     color: var(--text-muted);
     margin-top: 4px;
-  }
-
-  /* Multi-Intent Strategy Box */
-  .strategy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .strat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
-    padding: 1.25rem;
-    position: relative;
-  }
-
-  .strat-card.green { border-left: 4px solid #10b981; }
-  .strat-card.blue { border-left: 4px solid #0693e3; }
-  .strat-card.yellow { border-left: 4px solid #f59e0b; }
-  .strat-card.purple { border-left: 4px solid #8b5cf6; }
-
-  .strat-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .strat-desc {
-    font-size: 0.825rem;
-    color: var(--text-muted);
-    line-height: 1.55;
-    margin-bottom: 1rem;
-  }
-
-  .strat-example {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius-sm);
-    padding: 8px 12px;
-    font-size: 0.78rem;
-    font-family: 'JetBrains Mono', monospace;
-    color: #e2e8f0;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   /* Table styling */
@@ -329,7 +283,8 @@
 
   .status-published { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.35); }
   .status-scheduled { background: rgba(139, 92, 246, 0.18); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.35); }
-  .status-planned { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.35); }
+  .status-target-sep { background: rgba(6, 147, 227, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+  .status-target-okt { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); }
   .status-backlog { background: rgba(255, 255, 255, 0.05); color: var(--text-dim); border: 1px solid rgba(255, 255, 255, 0.08); }
 
   .badge-intent {
@@ -343,7 +298,6 @@
   .intent-info { background: rgba(59, 130, 246, 0.15); color: #93c5fd; }
   .intent-comm { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
   .intent-trans { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
-  .intent-mixed { background: rgba(139, 92, 246, 0.15); color: #d8b4fe; }
 
   .article-link {
     color: var(--accent);
@@ -352,7 +306,66 @@
   }
   .article-link:hover { text-decoration: underline; }
 
-  /* Filters for GKP Master */
+  .week-badge {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  /* Multi-Intent Strategy Box */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .strat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    position: relative;
+  }
+
+  .strat-card.green { border-left: 4px solid #10b981; }
+  .strat-card.blue { border-left: 4px solid #0693e3; }
+  .strat-card.yellow { border-left: 4px solid #f59e0b; }
+  .strat-card.purple { border-left: 4px solid #8b5cf6; }
+
+  .strat-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .strat-desc {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .strat-example {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #e2e8f0;
+    line-height: 1.5;
+  }
+
+  /* Master filter bar */
   .master-filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -402,124 +415,70 @@
 
   <!-- HEADER -->
   <header class="header">
-    <div class="header-badge">📊 STRATEGIC EDITORIAL & GKP KEYWORD DASHBOARD (INTERNAL ONLY)</div>
-    <h1 class="header-title">Perencanaan Konten, Pemetaan Intent & Bank Keyword GKP</h1>
+    <div class="header-badge">🗓️ ROADMAP KONTEN 3 BULAN (AGUSTUS — SEPTEMBER — OKTOBER 2026)</div>
+    <h1 class="header-title">Perencanaan Redaksi & Strategi Keyword GKP 3 Bulan</h1>
     <p class="header-desc">
-      Dashboard internal untuk memantau artikel yang sudah tayang, rencana artikel baru, serta manajemen 400+ kata kunci Google Keyword Planner (GKP) lengkap dengan klasifikasi Search Intent dan strategi Anti-Kanibalisasi (Multi-Intent Targeting).
+      Dashboard strategis internal memetakan realisasi bulan Agustus (19 artikel selesai), <strong>target September sesuai invoice resmi (3-5 artikel/minggu, total 20 artikel)</strong>, roadmap Oktober (20 artikel lanjutan), serta bank master 400+ keyword Google Keyword Planner lengkap dengan klasifikasi Search Intent.
     </p>
 
     <!-- KPI CARDS -->
     <div class="kpi-grid">
       <div class="kpi-card">
-        <span class="kpi-label">Total Keyword GKP</span>
-        <span class="kpi-value blue">404</span>
-      </div>
-      <div class="kpi-card">
-        <span class="kpi-label">Artikel Dibuat (Live/Sched)</span>
+        <span class="kpi-label">Bulan 1 (Agustus)</span>
         <span class="kpi-value green">19</span>
+        <span class="kpi-sub">100% Selesai (18 Live + 1 Sched)</span>
       </div>
       <div class="kpi-card">
-        <span class="kpi-label">Rencana 2 Minggu</span>
-        <span class="kpi-value yellow">10</span>
+        <span class="kpi-label">Bulan 2 (September)</span>
+        <span class="kpi-value blue">20</span>
+        <span class="kpi-sub">Target Invoice (3-5 artikel/minggu)</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Bulan 3 (Oktober)</span>
+        <span class="kpi-value yellow">20</span>
+        <span class="kpi-sub">Roadmap Lanjutan (20 Artikel)</span>
       </div>
       <div class="kpi-card">
         <span class="kpi-label">Bank Keyword Backlog</span>
-        <span class="kpi-value purple">375</span>
+        <span class="kpi-value purple">365</span>
+        <span class="kpi-sub">Total 404 Keyword GKP Terpetakan</span>
       </div>
     </div>
   </header>
 
   <!-- NAVIGATION TABS -->
   <nav class="tabs-nav">
-    <button class="tab-btn active" onclick="switchTab('tab-strategy');">
-      <span>💡</span> Strategi Multi-Intent & Anti-Kanibalisasi
+    <button class="tab-btn active" onclick="switchTab('tab-september');">
+      <span>🚀</span> Target September 2026 (Sesuai Invoice) <span class="tab-count">20 Artikel</span>
     </button>
-    <button class="tab-btn" onclick="switchTab('tab-published');">
-      <span>✅</span> Artikel Dibuat (Live & Scheduled) <span class="tab-count">19</span>
+    <button class="tab-btn" onclick="switchTab('tab-oktober');">
+      <span>📅</span> Roadmap Oktober 2026 <span class="tab-count">20 Artikel</span>
     </button>
-    <button class="tab-btn" onclick="switchTab('tab-planned');">
-      <span>🟡</span> Rencana 10 Artikel Terdekat <span class="tab-count">10</span>
+    <button class="tab-btn" onclick="switchTab('tab-agustus');">
+      <span>✅</span> Realisasi Agustus 2026 (Selesai) <span class="tab-count">19 Artikel</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-strategy');">
+      <span>💡</span> Panduan Multi-Intent & Anti-Kanibalisasi
     </button>
     <button class="tab-btn" onclick="switchTab('tab-master');">
       <span>🔍</span> Bank Master Keyword GKP <span class="tab-count">404</span>
     </button>
   </nav>
 
-  <!-- PANEL 1: MULTI-INTENT STRATEGY CHEAT SHEET -->
-  <section id="tab-strategy" class="panel active">
+  <!-- PANEL 1: TARGET SEPTEMBER 2026 (SESUAI INVOICE: 3-5/WEEK, 20 ARTICLES) -->
+  <section id="tab-september" class="panel active">
     <div class="panel-header">
-      <h2 class="panel-title">💡 Bolehkah 1 Keyword Dibuat Lebih Dari 1 Artikel Berdasarkan Beda Intent?</h2>
-      <p class="panel-desc">
-        <strong>JAWABANNYA: SANGAT BISA, DENGAN STRATEGI INTENT SLICING (Bukan Copy-Paste Fokus Keyword yang Sama Persis).</strong>
-        Google memberi peringkat halaman berdasarkan kesesuaian niat pencarian (*Search Intent*). Jika satu kata kunci besar memiliki beberapa cabang kebutuhan, kita bisa membuat 2–3 artikel terpisah yang saling melengkapi tanpa terkena penalti kanibalisasi.
-      </p>
-    </div>
-
-    <!-- 4 TIER INTENT SLICING -->
-    <div class="strategy-grid">
-      <div class="strat-card blue">
-        <div class="strat-title"><span>📘</span> Intent 1: Informational (Edukasi)</div>
-        <div class="strat-desc">
-          Pencari ingin tahu pemahaman medis, SOP tindakan, keamanan, atau persiapan keluarga sebelum memutuskan tindakan.
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h2 class="panel-title">🚀 Target Artikel September 2026 (Sesuai Invoice Resmi)</h2>
+          <p class="panel-desc">
+            Sesuai rincian <strong>Invoice_Artikel_September_2026.pdf</strong>: Scope of Work adalah <em>"3-5 articles / week or 12-20 / month"</em>. Target penuh 20 artikel telah dipetakan rapi ke dalam 4 minggu sprint kerja (5 artikel per minggu).
+          </p>
         </div>
-        <div class="strat-example">
-          <strong>Keyword:</strong> infus di rumah<br>
-          <strong>Target Judul H1:</strong> Prosedur Pasang Infus di Rumah: Standar Medis Steril untuk Keluarga<br>
-          <strong>Slug:</strong> /prosedur-pasang-infus-di-rumah/
+        <div style="background:rgba(6,147,227,0.15); border:1px solid rgba(6,147,227,0.3); border-radius:var(--radius-md); padding:8px 14px; font-size:0.8rem; color:#7dd3fc;">
+          📄 <strong>Scope Invoice:</strong> 20 Artikel / Bulan (5 Artikel / Minggu)
         </div>
       </div>
-
-      <div class="strat-card yellow">
-        <div class="strat-title"><span>💰</span> Intent 2: Commercial (Biaya & Tarif)</div>
-        <div class="strat-desc">
-          Pencari sudah yakin ingin tindakan, sekarang sedang membandingkan harga, rincian biaya All-In, atau perbandingan RS vs Rumah.
-        </div>
-        <div class="strat-example">
-          <strong>Keyword:</strong> biaya infus di rumah<br>
-          <strong>Target Judul H1:</strong> Rincian Biaya Infus di Rumah Jakarta: Paket Medis All-In Transparan<br>
-          <strong>Slug:</strong> /biaya-infus-di-rumah/
-        </div>
-      </div>
-
-      <div class="strat-card green">
-        <div class="strat-title"><span>🚨</span> Intent 3: Transactional (Cepat / 24 Jam)</div>
-        <div class="strat-desc">
-          Pencari butuh perawat/dokter datang SEKARANG JUGA ke rumah karena kondisi darurat lansia drop atau cairan habis.
-        </div>
-        <div class="strat-example">
-          <strong>Keyword:</strong> jasa infus di rumah terdekat<br>
-          <strong>Target Judul H1:</strong> Jasa Infus di Rumah Terdekat 24 Jam Jakarta: Visite Perawat Cepat<br>
-          <strong>Slug:</strong> /jasa-infus-di-rumah-terdekat/
-        </div>
-      </div>
-
-      <div class="strat-card purple">
-        <div class="strat-title"><span>🎯</span> Intent 4: Specific Condition (Spesifik)</div>
-        <div class="strat-desc">
-          Pencari mencari solusi untuk kondisi medis tertentu (misal: dehidrasi stroke, pemulihan pasca operasi, atau mual muntah).
-        </div>
-        <div class="strat-example">
-          <strong>Keyword:</strong> infus nutrisi lansia<br>
-          <strong>Target Judul H1:</strong> Terapi Infus Nutrisi Lansia di Rumah: Memulihkan Stamina Pasca Sakit<br>
-          <strong>Slug:</strong> /infus-nutrisi-lansia-di-rumah/
-        </div>
-      </div>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-md); padding:1.25rem;">
-      <h3 style="color:#ffffff; margin-bottom:0.5rem;">⚠️ Aturan Emas Anti-Kanibalisasi Google SpamBrain:</h3>
-      <ul style="padding-left:1.25rem; color:var(--text-muted); font-size:0.875rem; line-height:1.7;">
-        <li><strong style="color:#fca5a5;">DILARANG:</strong> Membuat 2 artikel dengan fokus keyword dan sudut pandang yang sama persis (misal artikel A: <em>"Infus di Rumah Jakarta"</em> dan artikel B: <em>"Layanan Infus di Rumah Jakarta"</em> yang isinya sama-sama jualan jasa). Keduanya akan saling kanibal dan rankingnya anjlok.</li>
-        <li><strong style="color:#86efac;">DISARANKAN:</strong> Bedakan <strong>Intent Modifier</strong> pada judul H1 dan Slug URL. Hubungkan kedua artikel dengan <strong>Internal Link Silang</strong> (misal artikel Prosedur memberi link ke artikel Biaya All-In). Google justru menyukai ini karena website kita menjadi ensiklopedia lengkap (*Topical Authority*).</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PANEL 2: PUBLISHED & SCHEDULED ARTICLES -->
-  <section id="tab-published" class="panel">
-    <div class="panel-header">
-      <h2 class="panel-title">✅ Daftar 19 Artikel yang Sudah Dibuat (Published & Scheduled)</h2>
-      <p class="panel-desc">Seluruh artikel yang sudah tayang live di website atau sudah dijadwalkan.</p>
     </div>
 
     <div class="table-responsive">
@@ -527,7 +486,625 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Judul Artikel (H1) & URL</th>
+            <th>Sprint & Jadwal</th>
+            <th>Rencana Judul H1 Artikel</th>
+            <th>Fokus Keyword GKP</th>
+            <th>Volume GKP</th>
+            <th>Search Intent</th>
+            <th>Sudut Pandang / Angle Pembahasan</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td><strong>1</strong></td>
+              <td><span class="week-badge">Minggu 1 (01-05 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Perawat Medis Stroke di Rumah: Panduan Rehabilitasi &amp; Perawatan Pasca Rawat Inap</td>
+              <td><span class="kw-text">perawat stroke di rumah</span></td>
+              <td><span class="vol-badge">1.300 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Rehabilitasi gerak lansia pasca stroke, latihan motorik, dan pencegahan dekubitus.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>2</strong></td>
+              <td><span class="week-badge">Minggu 1 (01-05 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Fisioterapi Lansia di Rumah Jakarta: Mengembalikan Mobilitas &amp; Kekuatan Otot</td>
+              <td><span class="kw-text">fisioterapi lansia di rumah</span></td>
+              <td><span class="vol-badge">1.100 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Terapi fisik latihan jalan, fleksibilitas sendi geriatri, dan pencegahan risiko jatuh.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>3</strong></td>
+              <td><span class="week-badge">Minggu 1 (01-05 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Pasang Kateter di Rumah Jakarta: Prosedur Medis Steril &amp; Nyaman untuk Lansia</td>
+              <td><span class="kw-text">pasang kateter di rumah</span></td>
+              <td><span class="vol-badge">990 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemasangan &amp; penggantian selang kateter urine (Foley) 24 jam steril tanpa harus ke IGD.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>4</strong></td>
+              <td><span class="week-badge">Minggu 1 (01-05 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Perawat NGT di Rumah Jakarta: Prosedur Pasang &amp; Ganti Selang Makan Aman</td>
+              <td><span class="kw-text">perawat ngt di rumah</span></td>
+              <td><span class="vol-badge">880 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Transactional &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">SOP medis pasang selang sonde makan (NGT) higienis untuk lansia sulit menelan (disfagia).</td>
+            </tr>
+          
+            <tr>
+              <td><strong>5</strong></td>
+              <td><span class="week-badge">Minggu 1 (01-05 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Perawatan Luka Dekubitus di Rumah: Panduan Medis Mencegah Infeksi Lansia Tirah Baring</td>
+              <td><span class="kw-text">perawatan luka dekubitus di rumah</span></td>
+              <td><span class="vol-badge">720 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Teknik modern balutan luka steril (CWCCA), pencegahan ulkus akibat tirah baring lama.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>6</strong></td>
+              <td><span class="week-badge">Minggu 2 (08-12 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Pendampingan Lansia Diabetes di Rumah: Kontrol Gula Darah &amp; Perawatan Kaki Diabetes</td>
+              <td><span class="kw-text">perawatan diabetes di rumah</span></td>
+              <td><span class="vol-badge">670 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemantauan GDS rutin harian, injeksi insulin, dan pencegahan luka borok diabetik.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>7</strong></td>
+              <td><span class="week-badge">Minggu 2 (08-12 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Perawatan Paliatif Lansia di Rumah: Memberikan Kenyamanan &amp; Kualitas Hidup Terbaik</td>
+              <td><span class="kw-text">perawatan paliatif di rumah</span></td>
+              <td><span class="vol-badge">590 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Manajemen nyeri stadium lanjut, kenyamanan emosional pasien &amp; pendampingan keluarga.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>8</strong></td>
+              <td><span class="week-badge">Minggu 2 (08-12 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Homecare Medis Pasca Rawat Inap Jakarta: Transisi Pemulihan RS ke Rumah yang Aman</td>
+              <td><span class="kw-text">homecare pasca rawat inap</span></td>
+              <td><span class="vol-badge">540 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Protokol pemulihan medis aman dari ruang rawat inap RS ke ranjang rumah sendiri.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>9</strong></td>
+              <td><span class="week-badge">Minggu 2 (08-12 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Perawat Lansia Demensia &amp; Alzheimer Jakarta: Pendampingan Sabar &amp; Berpengalaman</td>
+              <td><span class="kw-text">perawat demensia jakarta</span></td>
+              <td><span class="vol-badge">480 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Caregiver medis terlatih menghadapi gangguan daya ingat, disorientasi, dan emosi lansia.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>10</strong></td>
+              <td><span class="week-badge">Minggu 2 (08-12 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Suction di Rumah Jakarta: Sedot Dahak Steril untuk Pasien Sesak &amp; Lansia</td>
+              <td><span class="kw-text">jasa suction di rumah</span></td>
+              <td><span class="vol-badge">390 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Tindakan darurat pembersihan jalan napas tersumbat dahak/lendir pada pasien tirah baring.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>11</strong></td>
+              <td><span class="week-badge">Minggu 3 (15-19 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Rincian Biaya Infus di Rumah Jakarta: Paket Medis All-In Radius 10 Km Transparan</td>
+              <td><span class="kw-text">biaya infus dirumah</span></td>
+              <td><span class="vol-badge">480 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial Investigation (Biaya)
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Framing tarif All-In transparan bebas biaya terselubung untuk infus cairan &amp; vitamin di rumah.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>12</strong></td>
+              <td><span class="week-badge">Minggu 3 (15-19 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Bahaya Pasang Infus Sendiri Tanpa Tenaga Medis: Risiko Fatal Infeksi &amp; Emboli</td>
+              <td><span class="kw-text">infus di rumah sendiri</span></td>
+              <td><span class="vol-badge">480 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational (Anti-Zero Click &amp; Edukasi Risiko)
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Edukasi risiko sepsis, emboli udara, pembengkakan vena jika nekat pasang infus tanpa nakes ber-STR.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>13</strong></td>
+              <td><span class="week-badge">Minggu 3 (15-19 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Dokter Terdekat 24 Jam ke Rumah Jakarta: Layanan Visite Darurat Cepat Siaga</td>
+              <td><span class="kw-text">dokter terdekat 24 jam</span></td>
+              <td><span class="vol-badge">480 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional (Layanan Darurat Visite)
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Solusi pemeriksaan dokter umum/spesialis ke rumah tengah malam saat lansia mendadak drop.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>14</strong></td>
+              <td><span class="week-badge">Minggu 3 (15-19 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Perawat Lansia Resmi Jakarta: Kualifikasi STR Aktif &amp; Standar Klinis</td>
+              <td><span class="kw-text">jasa perawat lansia</span></td>
+              <td><span class="vol-badge">320 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Transactional &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Panduan membedakan perawat medis profesional bersertifikat vs ART non-medis.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>15</strong></td>
+              <td><span class="week-badge">Minggu 3 (15-19 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Layanan Infus Vitamin Booster Lansia di Rumah: Tingkatkan Imun &amp; Nafsu Makan</td>
+              <td><span class="kw-text">infus vitamin di rumah</span></td>
+              <td><span class="vol-badge">260 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Injeksi Neurobion, Vitamin C, &amp; Multivitamin dosis geriatri untuk pemulihan pasca sakit.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>16</strong></td>
+              <td><span class="week-badge">Minggu 4 (22-26 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Layanan Vaksinasi Lansia di Rumah Jakarta: Lindungi Orang Tua dari Pneumonia &amp; Flu</td>
+              <td><span class="kw-text">imuni vaksinasi di rumah</span></td>
+              <td><span class="vol-badge">390 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Transactional &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Suntik vaksin influenza &amp; pneumonia PCV13 di rumah tanpa risiko tertular virus di RS.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>17</strong></td>
+              <td><span class="week-badge">Minggu 4 (22-26 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Suntik Pelumas Sendi Lutut di Rumah Jakarta: Redakan Nyeri Osteoarthritis Lansia</td>
+              <td><span class="kw-text">suntik pelumas sendi lutut</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Injeksi asam hialuronat (viscosupplementation) untuk meredakan radang lutut kaku lansia.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>18</strong></td>
+              <td><span class="week-badge">Minggu 4 (22-26 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Suntik Nyeri Sendi di Rumah: Penanganan Cepat Radang Otot &amp; Sendi Geriatri</td>
+              <td><span class="kw-text">suntik nyeri sendi</span></td>
+              <td><span class="vol-badge">170 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Transactional &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Tindakan injeksi pereda nyeri sendi bawah supervisi dokter spesialis langsung di rumah.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>19</strong></td>
+              <td><span class="week-badge">Minggu 4 (22-26 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Terapi Infus Albumin di Rumah Jakarta: Percepat Penyembuhan Luka &amp; Bengkak Pasien</td>
+              <td><span class="kw-text">infus albumin di rumah</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Transactional &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemberian human albumin steril untuk pasien hipoalbuminemia, edema bengkak, dan pasca operasi.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>20</strong></td>
+              <td><span class="week-badge">Minggu 4 (22-26 Sep)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Prosedur Pasang Selang NGT di Rumah yang Benar: Hindari Aspirasi Paru pada Lansia</td>
+              <td><span class="kw-text">pasang selang ngt di rumah</span></td>
+              <td><span class="vol-badge">320 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Uji auskultasi lambung dan fiksasi steril selang sonde makan agar makanan tidak masuk ke paru.</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PANEL 2: ROADMAP OKTOBER 2026 (20 ARTICLES) -->
+  <section id="tab-oktober" class="panel">
+    <div class="panel-header">
+      <h2 class="panel-title">📅 Roadmap Konten Oktober 2026 (20 Artikel Lanjutan)</h2>
+      <p class="panel-desc">
+        Rencana lanjutan bulan ke-3 untuk memperdalam dominasi Topical Authority di bidang Caregiver, Infus Medis Spesifik (Lambung, Elektrolit, Zat Besi), Vaksinasi Geriatri, serta Rincian Biaya Alkes All-In.
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sprint & Jadwal</th>
+            <th>Rencana Judul H1 Artikel</th>
+            <th>Fokus Keyword GKP</th>
+            <th>Volume GKP</th>
+            <th>Search Intent</th>
+            <th>Sudut Pandang / Angle Pembahasan</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td><strong>21</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 1 (01-05 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Caregiver Lansia Jakarta: Peran, Tugas Harian, dan Bedanya dengan Perawat Medis</td>
+              <td><span class="kw-text">caregiver lansia</span></td>
+              <td><span class="vol-badge">390 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Edukasi batasan kerja pendamping non-medis vs perawat medis klinis untuk kenyamanan keluarga.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>22</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 1 (01-05 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Caregiver Pendamping Lansia Jakarta: Pilihan Harian, Mingguan &amp; Bulanan</td>
+              <td><span class="kw-text">jasa caregiver</span></td>
+              <td><span class="vol-badge">260 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Rincian paket pendampingan aktivitas harian lansia mandiri/semi-mandiri.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>23</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 1 (01-05 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Terapi Infus Lambung di Rumah: Solusi Atasi Dehidrasi Akibat Maag Akut &amp; GERD</td>
+              <td><span class="kw-text">infus lambung di rumah</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Transactional &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemberian cairan rehidrasi dan obat lambung (PPI) via IV saat pasien lansia terus muntah.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>24</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 1 (01-05 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Terapi Infus Elektrolit di Rumah Jakarta: Penanganan Cepat Diare &amp; Lemas Lansia</td>
+              <td><span class="kw-text">infus elektrolit di rumah</span></td>
+              <td><span class="vol-badge">170 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Koreksi natrium dan kalium darurat dengan infus Ringer Lactate/Asering steril di rumah.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>25</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 1 (01-05 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Terapi Infus Zat Besi di Rumah: Atasi Anemia Defisiensi Besi pada Pasien Geriatri</td>
+              <td><span class="kw-text">infus zat besi di rumah</span></td>
+              <td><span class="vol-badge">140 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemberian sukrosa besi parenteral untuk mengembalikan kadar hemoglobin lansia anemia.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>26</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 2 (08-12 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Vaksin Pneumonia Lansia di Rumah: Panduan Jenis PCV13 vs PPSV23 &amp; Jadwal Suntik</td>
+              <td><span class="kw-text">vaksin pneumonia lansia</span></td>
+              <td><span class="vol-badge">260 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Commercial &amp; Informational
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Perbandingan perlindungan vaksin radang paru geriatri dan pentingnya vaksinasi di rumah.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>27</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 2 (08-12 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Vaksin Flu Lansia ke Rumah Jakarta: Manfaat Vaksinasi Influenza Tahunan Geriatri</td>
+              <td><span class="kw-text">vaksin flu lansia di rumah</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Cegah komplikasi bronkitis dan pneumonia akibat serangan virus flu musiman pada manula.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>28</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 2 (08-12 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Layanan Perawat Lansia Terdekat di 5 Wilayah Jakarta: Akses Cepat Tenaga Medis</td>
+              <td><span class="kw-text">perawat lansia terdekat</span></td>
+              <td><span class="vol-badge">320 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional / Local
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pemetaan respon cepat perawat ke Jakarta Selatan, Barat, Pusat, Timur, dan Utara.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>29</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 2 (08-12 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Dokter Jaga Terdekat Siaga ke Rumah Jakarta: Pemeriksaan Medis Tanpa Antre RS</td>
+              <td><span class="kw-text">dokter jaga terdekat</span></td>
+              <td><span class="vol-badge">590 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Visite medis terjadwal atau darurat untuk lansia bed-rest yang sulit dibawa ke faskes.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>30</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 2 (08-12 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Infus Terdekat di Jakarta: Perawat Medis Cepat Tiba Radius 10 Km</td>
+              <td><span class="kw-text">jasa infus terdekat</span></td>
+              <td><span class="vol-badge">320 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional / Local
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Kemudahan reservasi layanan pasang/ganti infus darurat langsung via WhatsApp resmi.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>31</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 3 (15-19 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Klinik Home Care Terdekat Berizin Resmi di Jakarta: Standar Mutu Pelayanan Nakes</td>
+              <td><span class="kw-text">klinik home care terdekat</span></td>
+              <td><span class="vol-badge">260 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Navigational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Legalitas izin operasional Dinkes, jaminan SOP steril, dan kualifikasi dokter penanggung jawab.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>32</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 3 (15-19 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Jasa Suntik Medis di Rumah Jakarta: Pemberian Obat Injeksi Sesuai Resep Dokter</td>
+              <td><span class="kw-text">jasa suntik di rumah</span></td>
+              <td><span class="vol-badge">170 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Injeksi intramuskular (IM) dan subkutan (SC) untuk antibiotik, obat lambung, atau insulin.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>33</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 3 (15-19 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Rincian Biaya Pasang Kateter Urine di Rumah: Paket All-In Selang &amp; Kantung Urine</td>
+              <td><span class="kw-text">biaya pasang kateter di rumah</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial Investigation
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Transparansi biaya jasa perawat, selang kateter silikon/lateks, urine bag steril, dan transport.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>34</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 3 (15-19 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Biaya Pasang Selang NGT di Rumah Jakarta: Perbandingan Selang Silikon vs PVC</td>
+              <td><span class="kw-text">biaya pasang selang ngt di rumah</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial Investigation
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Komparasi masa pakai selang silikon (3 bulan) vs PVC (1 bulan) dan rincian tarif All-In.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>35</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 3 (15-19 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Biaya Sedot Dahak (Suction) di Rumah Jakarta: Paket Perawatan Pernapasan Bersih</td>
+              <td><span class="kw-text">biaya sedot dahak di rumah</span></td>
+              <td><span class="vol-badge">170 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-comm">
+                  Commercial Investigation
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Biaya sewa mesin suction portable, kateter suction disposabel, dan jasa perawat terlatih.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>36</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 4 (22-26 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Fisioterapi Pasca Stroke di Rumah: Tahapan Latihan Mandiri Gerak Tangan &amp; Kaki</td>
+              <td><span class="kw-text">fisioterapi stroke di rumah</span></td>
+              <td><span class="vol-badge">390 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Stimulasi neuro-rehabilitasi dini di kamar rumah untuk mencegah kontraktur sendi kaku.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>37</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 4 (22-26 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Panduan Perawatan Lansia Tirah Baring (Bed-Rest Total): SOP Higienitas &amp; Kenyamanan</td>
+              <td><span class="kw-text">perawatan lansia tirah baring</span></td>
+              <td><span class="vol-badge">260 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational (Panduan Keluarga)
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Protokol alih baring miring kanan-kiri tiap 2 jam, kebersihan kulit, dan pencegahan pneumonia hipostatik.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>38</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 4 (22-26 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Perawatan Luka Diabetes (Gangren) di Rumah: Metode Modern Dressing Tanpa Bau</td>
+              <td><span class="kw-text">perawatan luka diabetes di rumah</span></td>
+              <td><span class="vol-badge">320 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Debridement jaringan mati secara steril, balutan hidrokoloid, dan percepatan granulasi luka.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>39</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 4 (22-26 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Layanan Perawat Medis 24 Jam Siaga di Rumah Jakarta: Standar ICU Step-Down Homecare</td>
+              <td><span class="kw-text">layanan perawat medis 24 jam jakarta</span></td>
+              <td><span class="vol-badge">210 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-trans">
+                  Transactional
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Pendampingan medis intensif untuk lansia dengan trakeostomi, ventilator, atau pasca koma.</td>
+            </tr>
+          
+            <tr>
+              <td><strong>40</strong></td>
+              <td><span class="week-badge" style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.25);">Minggu 4 (22-26 Okt)</span></td>
+              <td style="font-weight:700; color:#ffffff;">Pemulihan Pasca Operasi Patah Tulang Panggul Lansia: Perawatan Medis &amp; Latihan Fisik</td>
+              <td><span class="kw-text">pemulihan pasca operasi tulang panggul lansia</span></td>
+              <td><span class="vol-badge">140 / bln</span></td>
+              <td>
+                <span class="badge-intent intent-info">
+                  Informational &amp; Commercial
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:#cbd5e1;">Mobilisasi bertahap pasca operasi pasang pen/ganti sendi panggul (hemiarthroplasty).</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PANEL 3: REALISASI AGUSTUS 2026 (19 ARTIKEL SELESAI) -->
+  <section id="tab-agustus" class="panel">
+    <div class="panel-header">
+      <h2 class="panel-title">✅ Realisasi Artikel Agustus 2026 (19 Artikel Selesai & Tayang)</h2>
+      <p class="panel-desc">
+        Realisasi 100% Invoice Agustus 2026: 18 Artikel Published Live + 1 Artikel Scheduled, seluruhnya terkalibrasi E-E-A-T dan audit Rank Math.
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Judul Artikel (H1) & URL Live</th>
             <th>Fokus Keyword GKP</th>
             <th>Volume GKP</th>
             <th>Search Intent</th>
@@ -547,7 +1124,7 @@
               </td>
               <td><span class="kw-text">home care adalah</span></td>
               <td><span class="vol-badge">12.100 / bln</span></td>
-              <td><span class="badge-intent intent-info">Informational (Edukasi &amp; Definisi)</span></td>
+              <td><span class="badge-intent intent-info">Informational (Definisi &amp; Edukasi)</span></td>
               <td><strong style="color:#ffffff;">1.870</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -566,7 +1143,7 @@
               </td>
               <td><span class="kw-text">homecare terdekat</span></td>
               <td><span class="vol-badge">1.900 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional / Local (Pencarian Layanan Terdekat)</span></td>
+              <td><span class="badge-intent intent-info">Transactional / Local (Layanan Terdekat)</span></td>
               <td><strong style="color:#ffffff;">1.959</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -585,7 +1162,7 @@
               </td>
               <td><span class="kw-text">di infus di rumah</span></td>
               <td><span class="vol-badge">1.600 / bln</span></td>
-              <td><span class="badge-intent intent-info">Informational &amp; Commercial (Prosedur &amp; Solusi)</span></td>
+              <td><span class="badge-intent intent-info">Informational &amp; Commercial</span></td>
               <td><strong style="color:#ffffff;">2.231</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -604,7 +1181,7 @@
               </td>
               <td><span class="kw-text">perawat lansia</span></td>
               <td><span class="vol-badge">1.000 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial &amp; Transactional (Rekomendasi Layanan)</span></td>
+              <td><span class="badge-intent intent-info">Commercial &amp; Transactional</span></td>
               <td><strong style="color:#ffffff;">1.990</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -623,7 +1200,7 @@
               </td>
               <td><span class="kw-text">dokter panggilan terdekat</span></td>
               <td><span class="vol-badge">1.300 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional (Kebutuhan Cepat / Visite)</span></td>
+              <td><span class="badge-intent intent-info">Transactional (Visite Cepat)</span></td>
               <td><strong style="color:#ffffff;">2.045</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -642,7 +1219,7 @@
               </td>
               <td><span class="kw-text">biaya homecare vs rawat inap</span></td>
               <td><span class="vol-badge">210 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial Investigation (Komparasi Biaya)</span></td>
+              <td><span class="badge-intent intent-info">Commercial Investigation (Komparasi Tarif)</span></td>
               <td><strong style="color:#ffffff;">2.335</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -661,7 +1238,7 @@
               </td>
               <td><span class="kw-text">pemulihan pasca operasi di rumah</span></td>
               <td><span class="vol-badge">170 / bln</span></td>
-              <td><span class="badge-intent intent-info">Informational (Panduan Perawatan Medis)</span></td>
+              <td><span class="badge-intent intent-info">Informational (Panduan Medis)</span></td>
               <td><strong style="color:#ffffff;">1.767</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -680,7 +1257,7 @@
               </td>
               <td><span class="kw-text">dokter keluarga lansia jakarta</span></td>
               <td><span class="vol-badge">720 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial (Layanan Dokter Rutin Geriatri)</span></td>
+              <td><span class="badge-intent intent-info">Commercial (Dokter Rutin Geriatri)</span></td>
               <td><strong style="color:#ffffff;">1.857</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -699,7 +1276,7 @@
               </td>
               <td><span class="kw-text">dokter terdekat 24 jam jakarta</span></td>
               <td><span class="vol-badge">480 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional (Kedaruratan &amp; Visite 24 Jam)</span></td>
+              <td><span class="badge-intent intent-info">Transactional (Kedaruratan 24 Jam)</span></td>
               <td><strong style="color:#ffffff;">1.742</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -718,7 +1295,7 @@
               </td>
               <td><span class="kw-text">klinik keluarga sehat jakarta</span></td>
               <td><span class="vol-badge">1.900 / bln</span></td>
-              <td><span class="badge-intent intent-info">Navigational &amp; Commercial (Kredibilitas Agensi)</span></td>
+              <td><span class="badge-intent intent-info">Navigational &amp; Commercial</span></td>
               <td><strong style="color:#ffffff;">2.249</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -737,7 +1314,7 @@
               </td>
               <td><span class="kw-text">jasa perawat lansia jakarta</span></td>
               <td><span class="vol-badge">390 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional (Penyedia Perawat Terverifikasi)</span></td>
+              <td><span class="badge-intent intent-info">Transactional (Agensi Resmi)</span></td>
               <td><strong style="color:#ffffff;">1.306</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -756,7 +1333,7 @@
               </td>
               <td><span class="kw-text">dokter panggilan ke rumah jakarta</span></td>
               <td><span class="vol-badge">320 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional (Pemesanan Dokter ke Rumah)</span></td>
+              <td><span class="badge-intent intent-info">Transactional (Pemesanan Dokter)</span></td>
               <td><strong style="color:#ffffff;">1.202</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -775,7 +1352,7 @@
               </td>
               <td><span class="kw-text">pasang infus di rumah jakarta</span></td>
               <td><span class="vol-badge">260 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional &amp; Informational (Tindakan Medis Infus)</span></td>
+              <td><span class="badge-intent intent-info">Transactional &amp; Informational</span></td>
               <td><strong style="color:#ffffff;">1.201</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -794,7 +1371,7 @@
               </td>
               <td><span class="kw-text">jasa perawat lansia harian jakarta</span></td>
               <td><span class="vol-badge">140 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial (Paket Harian &amp; Fleksibilitas)</span></td>
+              <td><span class="badge-intent intent-info">Commercial (Paket Harian)</span></td>
               <td><strong style="color:#ffffff;">1.196</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -813,7 +1390,7 @@
               </td>
               <td><span class="kw-text">tarif jasa perawat home care jakarta</span></td>
               <td><span class="vol-badge">140 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial Investigation (Transparansi Tarif All-In)</span></td>
+              <td><span class="badge-intent intent-info">Commercial Investigation (Tarif All-In)</span></td>
               <td><strong style="color:#ffffff;">1.189</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -832,7 +1409,7 @@
               </td>
               <td><span class="kw-text">biaya ekg jantung</span></td>
               <td><span class="vol-badge">260 / bln</span></td>
-              <td><span class="badge-intent intent-info">Commercial Investigation (Rincian Tarif Rekam Jantung)</span></td>
+              <td><span class="badge-intent intent-info">Commercial Investigation (Tarif EKG)</span></td>
               <td><strong style="color:#ffffff;">1.364</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -851,7 +1428,7 @@
               </td>
               <td><span class="kw-text">rekam jantung ekg</span></td>
               <td><span class="vol-badge">390 / bln</span></td>
-              <td><span class="badge-intent intent-info">Transactional &amp; Informational (Layanan Rekam Medis)</span></td>
+              <td><span class="badge-intent intent-info">Transactional &amp; Informational</span></td>
               <td><strong style="color:#ffffff;">1.116</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -870,7 +1447,7 @@
               </td>
               <td><span class="kw-text">perbedaan ekg dan echo</span></td>
               <td><span class="vol-badge">320 / bln</span></td>
-              <td><span class="badge-intent intent-info">Informational (Komparasi Medis Jantung)</span></td>
+              <td><span class="badge-intent intent-info">Informational (Komparasi Medis)</span></td>
               <td><strong style="color:#ffffff;">1.198</strong> kata</td>
               <td>
                 <span class="badge-status status-published">
@@ -889,7 +1466,7 @@
               </td>
               <td><span class="kw-text">membaca ekg</span></td>
               <td><span class="vol-badge">480 / bln</span></td>
-              <td><span class="badge-intent intent-info">Informational (Edukasi Medis Gelombang Jantung)</span></td>
+              <td><span class="badge-intent intent-info">Informational (Edukasi Gelombang EKG)</span></td>
               <td><strong style="color:#ffffff;">1.356</strong> kata</td>
               <td>
                 <span class="badge-status status-scheduled">
@@ -903,149 +1480,92 @@
     </div>
   </section>
 
-  <!-- PANEL 3: 10 PLANNED ARTICLES -->
-  <section id="tab-planned" class="panel">
+  <!-- PANEL 4: PANDUAN STRATEGI MULTI-INTENT -->
+  <section id="tab-strategy" class="panel">
     <div class="panel-header">
-      <h2 class="panel-title">🟡 Daftar 10 Rencana Artikel Terdekat (Sprint 2 Minggu)</h2>
-      <p class="panel-desc">Rencana artikel yang sudah diurutkan berdasarkan potensi pencari dan belum ditulis.</p>
+      <h2 class="panel-title">💡 Strategi Multi-Intent: 1 Keyword Besar Menjadi 2–3 Artikel Tanpa Kanibalisasi</h2>
+      <p class="panel-desc">
+        Google tidak membatasi 1 topik hanya untuk 1 halaman, asalkan <strong>niat pencarian (*Search Intent*)-nya berbeda</strong>. Gunakan formula <em>Intent Slicing</em> di bawah ini untuk memperluas jangkauan kata kunci besar:
+      </p>
     </div>
 
-    <div class="table-responsive">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Rencana Judul H1</th>
-            <th>Fokus Keyword GKP</th>
-            <th>Volume GKP</th>
-            <th>Search Intent</th>
-            <th>Sudut Pandang / Angle Pembahasan</th>
-            <th>Jadwal Target</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-            <tr>
-              <td><strong>1</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Perawat Medis Stroke di Rumah: Panduan Rehabilitasi &amp; Perawatan Pasca Rawat Inap</td>
-              <td><span class="kw-text">perawat stroke di rumah</span></td>
-              <td><span class="vol-badge">1.300 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Informational &amp; Commercial</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Rehabilitasi mobilitas, pencegahan luka dekubitus, pendampingan pasca stroke di rumah.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 1 - Hari 1</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>2</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Jasa Perawat NGT di Rumah Jakarta: Prosedur Pasang &amp; Ganti Selang Makan Aman</td>
-              <td><span class="kw-text">perawat ngt di rumah</span></td>
-              <td><span class="vol-badge">880 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Transactional &amp; Informational</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Pemasangan &amp; perawatan selang makan (NGT) higienis tanpa harus repot antre ke RS.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 1 - Hari 2</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>3</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Perawatan Luka Dekubitus di Rumah: Panduan Medis Mencegah Infeksi Lansia Tirah Baring</td>
-              <td><span class="kw-text">perawatan luka dekubitus di rumah</span></td>
-              <td><span class="vol-badge">720 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Informational &amp; Commercial</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Perawatan luka tirah baring modern (CWCCA) &amp; penggantian balutan steril.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 1 - Hari 3</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>4</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Jasa Pasang Kateter di Rumah Jakarta: Prosedur Medis Steril &amp; Nyaman untuk Lansia</td>
-              <td><span class="kw-text">pasang kateter di rumah</span></td>
-              <td><span class="vol-badge">990 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Transactional</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Pemasangan &amp; penggantian selang kateter urine steril siaga 24 jam di rumah.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 1 - Hari 4</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>5</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Fisioterapi Lansia di Rumah Jakarta: Mengembalikan Mobilitas &amp; Kekuatan Otot</td>
-              <td><span class="kw-text">fisioterapi lansia di rumah</span></td>
-              <td><span class="vol-badge">1.100 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Commercial &amp; Transactional</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Terapi fisik otot &amp; sendi lansia untuk memulihkan gerak dan cegah risiko jatuh.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 1 - Hari 5</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>6</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Perawatan Paliatif Lansia di Rumah: Memberikan Kenyamanan &amp; Kualitas Hidup Terbaik</td>
-              <td><span class="kw-text">perawatan paliatif di rumah</span></td>
-              <td><span class="vol-badge">590 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Informational &amp; Commercial</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Manajemen nyeri medis, dukungan emosional keluarga &amp; peningkatan kualitas hidup lansia.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 2 - Hari 1</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>7</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Perawat Lansia Demensia &amp; Alzheimer Jakarta: Pendampingan Sabar &amp; Berpengalaman</td>
-              <td><span class="kw-text">perawat demensia jakarta</span></td>
-              <td><span class="vol-badge">480 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Transactional</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Pendampingan khusus lansia dengan gangguan memori, pikun/demensia &amp; stimulasi kognitif.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 2 - Hari 2</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>8</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Jasa Suction di Rumah Jakarta: Sedot Dahak Steril untuk Pasien Sesak &amp; Lansia</td>
-              <td><span class="kw-text">jasa suction di rumah</span></td>
-              <td><span class="vol-badge">390 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Transactional</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Tindakan medis pembersihan jalan napas (suction) steril untuk melegakan sesak di rumah.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 2 - Hari 3</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>9</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Pendampingan Lansia Diabetes di Rumah: Kontrol Gula Darah &amp; Perawatan Kaki Diabetes</td>
-              <td><span class="kw-text">perawatan diabetes di rumah</span></td>
-              <td><span class="vol-badge">670 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Informational &amp; Commercial</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Monitoring rutin gula darah sewaktu (GDS), suntik insulin &amp; pencegahan ulkus kaki diabetes.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 2 - Hari 4</span></td>
-            </tr>
-          
-            <tr>
-              <td><strong>10</strong></td>
-              <td style="font-weight:700; color:#ffffff;">Homecare Medis Pasca Rawat Inap Jakarta: Transisi Pemulihan RS ke Rumah yang Aman</td>
-              <td><span class="kw-text">homecare pasca rawat inap</span></td>
-              <td><span class="vol-badge">540 / bln</span></td>
-              <td><span class="badge-intent intent-comm">Commercial &amp; Transactional</span></td>
-              <td style="font-size:0.8rem; color:#cbd5e1;">Transisi pemulihan bertahap dari kamar rawat inap rumah sakit ke kenyamanan rumah sendiri.</td>
-              <td><span class="badge-status status-planned">🟡 Sprint 2 - Hari 5</span></td>
-            </tr>
-          
-        </tbody>
-      </table>
+    <!-- 4 TIER INTENT SLICING -->
+    <div class="strategy-grid">
+      <div class="strat-card blue">
+        <div class="strat-title"><span>📘</span> Intent 1: Informational (Edukasi & SOP)</div>
+        <div class="strat-desc">
+          Pencari ingin tahu pemahaman medis, SOP tindakan, kriteria aman, dan persiapan keluarga di rumah.
+        </div>
+        <div class="strat-example">
+          <strong>Keyword:</strong> infus di rumah<br>
+          <strong>Target H1:</strong> Prosedur Pasang Infus di Rumah: Standar Medis Steril untuk Keluarga<br>
+          <strong>Slug:</strong> /prosedur-pasang-infus-di-rumah/
+        </div>
+      </div>
+
+      <div class="strat-card yellow">
+        <div class="strat-title"><span>💰</span> Intent 2: Commercial (Biaya & Tarif)</div>
+        <div class="strat-desc">
+          Pencari sudah yakin mau pesan, sekarang sedang membandingkan harga, rincian biaya All-In, atau perbandingan RS vs Rumah.
+        </div>
+        <div class="strat-example">
+          <strong>Keyword:</strong> biaya infus dirumah<br>
+          <strong>Target H1:</strong> Rincian Biaya Infus di Rumah Jakarta: Paket Medis All-In Transparan<br>
+          <strong>Slug:</strong> /biaya-infus-di-rumah/
+        </div>
+      </div>
+
+      <div class="strat-card green">
+        <div class="strat-title"><span>🚨</span> Intent 3: Transactional (Cepat 24 Jam)</div>
+        <div class="strat-desc">
+          Pencari butuh perawat/dokter datang SEGERA ke rumah karena kondisi darurat lansia drop atau cairan habis.
+        </div>
+        <div class="strat-example">
+          <strong>Keyword:</strong> jasa infus terdekat<br>
+          <strong>Target H1:</strong> Jasa Infus di Rumah Terdekat 24 Jam Jakarta: Visite Medis Cepat Siaga<br>
+          <strong>Slug:</strong> /jasa-infus-di-rumah-terdekat/
+        </div>
+      </div>
+
+      <div class="strat-card purple">
+        <div class="strat-title"><span>🎯</span> Intent 4: Specific Medical Sub-Service</div>
+        <div class="strat-desc">
+          Pencari mencari solusi untuk kondisi klinis tertentu (misal: vitamin booster, albumin, zat besi, atau rehidrasi muntah).
+        </div>
+        <div class="strat-example">
+          <strong>Keyword:</strong> infus albumin di rumah<br>
+          <strong>Target H1:</strong> Terapi Infus Albumin di Rumah Jakarta: Percepat Penyembuhan Luka & Edema<br>
+          <strong>Slug:</strong> /infus-albumin-di-rumah/
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-md); padding:1.25rem;">
+      <h3 style="color:#ffffff; margin-bottom:0.5rem;">⚠️ Aturan Emas Anti-Kanibalisasi Google SpamBrain:</h3>
+      <ul style="padding-left:1.25rem; color:var(--text-muted); font-size:0.875rem; line-height:1.7;">
+        <li><strong style="color:#fca5a5;">DILARANG:</strong> Menulis 2 artikel yang sudut pandangnya identik (sama-sama jualan jasa umum) dengan keyword serupa. Keduanya akan saling kanibal di SERP Google.</li>
+        <li><strong style="color:#86efac;">DISARANKAN:</strong> Bedakan <strong>Intent Modifier</strong> pada judul H1 dan Slug URL. Lalu hubungkan kedua artikel dengan <strong>Internal Link Silang Kontekstual</strong>. Google menyukai ini karena website kita menjadi ensiklopedia lengkap (*Topical Authority*).</li>
+      </ul>
     </div>
   </section>
 
-  <!-- PANEL 4: MASTER GKP KEYWORDS (400+ ITEMS) -->
+  <!-- PANEL 5: MASTER GKP KEYWORDS (400+ ITEMS) -->
   <section id="tab-master" class="panel">
     <div class="panel-header">
       <h2 class="panel-title">🔍 Bank Master Keyword GKP Lengkap (Diurutkan Berdasarkan Pencari Tertinggi)</h2>
-      <p class="panel-desc">Gunakan filter dan kotak pencarian untuk memilih kata kunci berikutnya atau merencanakan artikel pecahan intent.</p>
+      <p class="panel-desc">Gunakan filter dan kotak pencarian untuk melihat status setiap kata kunci dari total 404 kata kunci GKP.</p>
     </div>
 
     <!-- Filter & Search Controls -->
     <div class="master-filter-bar">
-      <input type="text" id="gkpSearchInput" class="search-input-box" placeholder="Ketik kata kunci (misal: infus, dokter, stroke, ekg, biaya, lansia)...">
+      <input type="text" id="gkpSearchInput" class="search-input-box" placeholder="Ketik kata kunci (misal: infus, dokter, stroke, kateter, ngt, biaya, lansia)...">
       
       <select id="statusFilter" class="filter-select">
         <option value="all">Semua Status (404 Keyword)</option>
-        <option value="Published / Scheduled">✅ Sudah Dibuat (19)</option>
-        <option value="Rencana Terdekat">🟡 Rencana Terdekat (10)</option>
-        <option value="Backlog (Bank Ide)">⚪ Backlog / Bank Ide (375)</option>
+        <option value="Agustus (Published/Sched)">✅ Agustus Selesai (19)</option>
+        <option value="September 2026 (Target Invoice)">🚀 Target September (20)</option>
+        <option value="Oktober 2026 (Target Roadmap)">📅 Target Oktober (20)</option>
+        <option value="Backlog (Bank Ide)">⚪ Backlog / Bank Ide (365)</option>
       </select>
 
       <select id="intentFilter" class="filter-select">
@@ -1069,13 +1589,13 @@
             <th>Pencarian Bulanan</th>
             <th>Persaingan</th>
             <th>Klasifikasi Intent</th>
-            <th>Status Konten</th>
-            <th>Artikel Terkait / Rencana Eksekusi</th>
+            <th>Status Roadmap</th>
+            <th>Artikel Terkait / Rencana Judul</th>
           </tr>
         </thead>
         <tbody id="gkpTableBody">
           
-            <tr data-status="Published / Scheduled" data-intent="Informational (Edukasi & Definisi)" data-kw="home care adalah">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Informational (Edukasi & Definisi)" data-kw="home care adalah">
               <td>1</td>
               <td><span class="kw-text">home care adalah</span></td>
               <td><span class="vol-badge">12.100</span></td>
@@ -1087,7 +1607,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1155,7 +1675,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional / Local (Pencarian Layanan Terdekat)" data-kw="homecare terdekat">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional / Local (Pencarian Layanan Terdekat)" data-kw="homecare terdekat">
               <td>5</td>
               <td><span class="kw-text">homecare terdekat</span></td>
               <td><span class="vol-badge">1.900</span></td>
@@ -1167,7 +1687,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1215,7 +1735,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Navigational & Commercial (Kredibilitas Agensi)" data-kw="klinik keluarga sehat jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Navigational & Commercial (Kredibilitas Agensi)" data-kw="klinik keluarga sehat jakarta">
               <td>8</td>
               <td><span class="kw-text">klinik keluarga sehat jakarta</span></td>
               <td><span class="vol-badge">1.900</span></td>
@@ -1227,7 +1747,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1255,7 +1775,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Informational & Commercial (Prosedur & Solusi)" data-kw="di infus di rumah">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Informational & Commercial (Prosedur & Solusi)" data-kw="di infus di rumah">
               <td>10</td>
               <td><span class="kw-text">di infus di rumah</span></td>
               <td><span class="vol-badge">1.600</span></td>
@@ -1267,7 +1787,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1335,7 +1855,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional (Kebutuhan Cepat / Visite)" data-kw="dokter panggilan terdekat">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional (Kebutuhan Cepat / Visite)" data-kw="dokter panggilan terdekat">
               <td>14</td>
               <td><span class="kw-text">dokter panggilan terdekat</span></td>
               <td><span class="vol-badge">1.300</span></td>
@@ -1347,7 +1867,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1355,7 +1875,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Informational & Commercial" data-kw="perawat stroke di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial" data-kw="perawat stroke di rumah">
               <td>15</td>
               <td><span class="kw-text">perawat stroke di rumah</span></td>
               <td><span class="vol-badge">1.300</span></td>
@@ -1366,8 +1886,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1375,7 +1895,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Commercial & Transactional" data-kw="fisioterapi lansia di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Commercial & Transactional" data-kw="fisioterapi lansia di rumah">
               <td>16</td>
               <td><span class="kw-text">fisioterapi lansia di rumah</span></td>
               <td><span class="vol-badge">1.100</span></td>
@@ -1386,8 +1906,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1395,7 +1915,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial & Transactional (Rekomendasi Layanan)" data-kw="perawat lansia">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial & Transactional (Rekomendasi Layanan)" data-kw="perawat lansia">
               <td>17</td>
               <td><span class="kw-text">perawat lansia</span></td>
               <td><span class="vol-badge">1.000</span></td>
@@ -1407,7 +1927,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1415,7 +1935,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Transactional" data-kw="pasang kateter di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional" data-kw="pasang kateter di rumah">
               <td>18</td>
               <td><span class="kw-text">pasang kateter di rumah</span></td>
               <td><span class="vol-badge">990</span></td>
@@ -1426,8 +1946,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1455,7 +1975,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Transactional & Informational" data-kw="perawat ngt di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional & Informational" data-kw="perawat ngt di rumah">
               <td>20</td>
               <td><span class="kw-text">perawat ngt di rumah</span></td>
               <td><span class="vol-badge">880</span></td>
@@ -1466,8 +1986,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1495,7 +2015,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Informational & Commercial" data-kw="perawatan luka dekubitus di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial" data-kw="perawatan luka dekubitus di rumah">
               <td>22</td>
               <td><span class="kw-text">perawatan luka dekubitus di rumah</span></td>
               <td><span class="vol-badge">720</span></td>
@@ -1506,8 +2026,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1515,7 +2035,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial (Layanan Dokter Rutin Geriatri)" data-kw="dokter keluarga lansia jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial (Layanan Dokter Rutin Geriatri)" data-kw="dokter keluarga lansia jakarta">
               <td>23</td>
               <td><span class="kw-text">dokter keluarga lansia jakarta</span></td>
               <td><span class="vol-badge">720</span></td>
@@ -1527,7 +2047,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1535,7 +2055,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Informational & Commercial" data-kw="perawatan diabetes di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial" data-kw="perawatan diabetes di rumah">
               <td>24</td>
               <td><span class="kw-text">perawatan diabetes di rumah</span></td>
               <td><span class="vol-badge">670</span></td>
@@ -1546,8 +2066,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1555,7 +2075,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="dokter jaga terdekat">
+            <tr data-status="Oktober 2026 (Target Roadmap)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="dokter jaga terdekat">
               <td>25</td>
               <td><span class="kw-text">dokter jaga terdekat</span></td>
               <td><span class="vol-badge">590</span></td>
@@ -1566,16 +2086,16 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-okt">
+                  📅 Target Okt
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Dokter Jaga Terdekat Siaga ke Rumah Jakarta: Pemeriksaan Medis Tanpa Antre RS
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Informational & Commercial" data-kw="perawatan paliatif di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial" data-kw="perawatan paliatif di rumah">
               <td>26</td>
               <td><span class="kw-text">perawatan paliatif di rumah</span></td>
               <td><span class="vol-badge">590</span></td>
@@ -1586,8 +2106,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1595,7 +2115,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Commercial & Transactional" data-kw="homecare pasca rawat inap">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Commercial & Transactional" data-kw="homecare pasca rawat inap">
               <td>27</td>
               <td><span class="kw-text">homecare pasca rawat inap</span></td>
               <td><span class="vol-badge">540</span></td>
@@ -1606,8 +2126,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1615,7 +2135,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Commercial Investigation (Biaya & Komparasi)" data-kw="biaya infus dirumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Commercial Investigation (Biaya & Komparasi)" data-kw="biaya infus dirumah">
               <td>28</td>
               <td><span class="kw-text">biaya infus dirumah</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1626,16 +2146,16 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Rincian Biaya Infus di Rumah Jakarta: Paket Medis All-In Radius 10 Km Transparan
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Informational & Commercial (Umum)" data-kw="infus di rumah sendiri">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial (Umum)" data-kw="infus di rumah sendiri">
               <td>29</td>
               <td><span class="kw-text">infus di rumah sendiri</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1646,16 +2166,16 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Bahaya Pasang Infus Sendiri Tanpa Tenaga Medis: Risiko Fatal Infeksi &amp; Emboli
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="dokter terdekat 24 jam">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="dokter terdekat 24 jam">
               <td>30</td>
               <td><span class="kw-text">dokter terdekat 24 jam</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1666,12 +2186,12 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Dokter Terdekat 24 Jam ke Rumah Jakarta: Layanan Visite Darurat Cepat Siaga
               </td>
             </tr>
           
@@ -1695,7 +2215,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Transactional" data-kw="perawat demensia jakarta">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional" data-kw="perawat demensia jakarta">
               <td>32</td>
               <td><span class="kw-text">perawat demensia jakarta</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1706,8 +2226,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1715,7 +2235,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional (Kedaruratan & Visite 24 Jam)" data-kw="dokter terdekat 24 jam jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional (Kedaruratan & Visite 24 Jam)" data-kw="dokter terdekat 24 jam jakarta">
               <td>33</td>
               <td><span class="kw-text">dokter terdekat 24 jam jakarta</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1727,7 +2247,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1735,7 +2255,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Informational (Edukasi Medis Gelombang Jantung)" data-kw="membaca ekg">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Informational (Edukasi Medis Gelombang Jantung)" data-kw="membaca ekg">
               <td>34</td>
               <td><span class="kw-text">membaca ekg</span></td>
               <td><span class="vol-badge">480</span></td>
@@ -1747,7 +2267,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1775,7 +2295,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Informational & Commercial (Umum)" data-kw="imuni vaksinasi di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial (Umum)" data-kw="imuni vaksinasi di rumah">
               <td>36</td>
               <td><span class="kw-text">imuni vaksinasi di rumah</span></td>
               <td><span class="vol-badge">390</span></td>
@@ -1786,12 +2306,12 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Layanan Vaksinasi Lansia di Rumah Jakarta: Lindungi Orang Tua dari Pneumonia &amp; Flu
               </td>
             </tr>
           
@@ -1855,7 +2375,7 @@
               </td>
             </tr>
           
-            <tr data-status="Rencana Terdekat" data-intent="Transactional" data-kw="jasa suction di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional" data-kw="jasa suction di rumah">
               <td>40</td>
               <td><span class="kw-text">jasa suction di rumah</span></td>
               <td><span class="vol-badge">390</span></td>
@@ -1866,8 +2386,8 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-planned">
-                  🟡 Rencana 2 Minggu
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1875,7 +2395,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional (Penyedia Perawat Terverifikasi)" data-kw="jasa perawat lansia jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional (Penyedia Perawat Terverifikasi)" data-kw="jasa perawat lansia jakarta">
               <td>41</td>
               <td><span class="kw-text">jasa perawat lansia jakarta</span></td>
               <td><span class="vol-badge">390</span></td>
@@ -1887,7 +2407,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1895,7 +2415,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional & Informational (Layanan Rekam Medis)" data-kw="rekam jantung ekg">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional & Informational (Layanan Rekam Medis)" data-kw="rekam jantung ekg">
               <td>42</td>
               <td><span class="kw-text">rekam jantung ekg</span></td>
               <td><span class="vol-badge">390</span></td>
@@ -1907,7 +2427,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -1975,7 +2495,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="jasa infus terdekat">
+            <tr data-status="Oktober 2026 (Target Roadmap)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="jasa infus terdekat">
               <td>46</td>
               <td><span class="kw-text">jasa infus terdekat</span></td>
               <td><span class="vol-badge">320</span></td>
@@ -1986,12 +2506,12 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-okt">
+                  📅 Target Okt
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Jasa Infus Terdekat di Jakarta: Perawat Medis Cepat Tiba Radius 10 Km
               </td>
             </tr>
           
@@ -2035,7 +2555,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="jasa perawat lansia">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="jasa perawat lansia">
               <td>49</td>
               <td><span class="kw-text">jasa perawat lansia</span></td>
               <td><span class="vol-badge">320</span></td>
@@ -2046,16 +2566,16 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Jasa Perawat Lansia Resmi Jakarta: Kualifikasi STR Aktif &amp; Standar Klinis
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional (Pemesanan Dokter ke Rumah)" data-kw="dokter panggilan ke rumah jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional (Pemesanan Dokter ke Rumah)" data-kw="dokter panggilan ke rumah jakarta">
               <td>50</td>
               <td><span class="kw-text">dokter panggilan ke rumah jakarta</span></td>
               <td><span class="vol-badge">320</span></td>
@@ -2067,7 +2587,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2075,7 +2595,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Informational (Komparasi Medis Jantung)" data-kw="perbedaan ekg dan echo">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Informational (Komparasi Medis Jantung)" data-kw="perbedaan ekg dan echo">
               <td>51</td>
               <td><span class="kw-text">perbedaan ekg dan echo</span></td>
               <td><span class="vol-badge">320</span></td>
@@ -2087,7 +2607,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2195,7 +2715,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="klinik home care terdekat">
+            <tr data-status="Oktober 2026 (Target Roadmap)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="klinik home care terdekat">
               <td>57</td>
               <td><span class="kw-text">klinik home care terdekat</span></td>
               <td><span class="vol-badge">260</span></td>
@@ -2206,12 +2726,12 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-okt">
+                  📅 Target Okt
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Klinik Home Care Terdekat Berizin Resmi di Jakarta: Standar Mutu Pelayanan Nakes
               </td>
             </tr>
           
@@ -2255,7 +2775,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Informational & Commercial (Umum)" data-kw="infus vitamin di rumah">
+            <tr data-status="September 2026 (Target Invoice)" data-intent="Informational & Commercial (Umum)" data-kw="infus vitamin di rumah">
               <td>60</td>
               <td><span class="kw-text">infus vitamin di rumah</span></td>
               <td><span class="vol-badge">260</span></td>
@@ -2266,16 +2786,16 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-sep">
+                  🚀 Target Sep
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Layanan Infus Vitamin Booster Lansia di Rumah: Tingkatkan Imun &amp; Nafsu Makan
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Transactional & Informational (Tindakan Medis Infus)" data-kw="pasang infus di rumah jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Transactional & Informational (Tindakan Medis Infus)" data-kw="pasang infus di rumah jakarta">
               <td>61</td>
               <td><span class="kw-text">pasang infus di rumah jakarta</span></td>
               <td><span class="vol-badge">260</span></td>
@@ -2287,7 +2807,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2295,7 +2815,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial Investigation (Rincian Tarif Rekam Jantung)" data-kw="biaya ekg jantung">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial Investigation (Rincian Tarif Rekam Jantung)" data-kw="biaya ekg jantung">
               <td>62</td>
               <td><span class="kw-text">biaya ekg jantung</span></td>
               <td><span class="vol-badge">260</span></td>
@@ -2307,7 +2827,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2535,7 +3055,7 @@
               </td>
             </tr>
           
-            <tr data-status="Backlog (Bank Ide)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="perawat lansia terdekat">
+            <tr data-status="Oktober 2026 (Target Roadmap)" data-intent="Transactional / Local (Pencarian Layanan & Panggilan)" data-kw="perawat lansia terdekat">
               <td>74</td>
               <td><span class="kw-text">perawat lansia terdekat</span></td>
               <td><span class="vol-badge">210</span></td>
@@ -2546,12 +3066,12 @@
                 </span>
               </td>
               <td>
-                <span class="badge-status status-backlog">
-                  ⚪ Backlog
+                <span class="badge-status status-target-okt">
+                  📅 Target Okt
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
-                -
+                Layanan Perawat Lansia Terdekat di 5 Wilayah Jakarta: Akses Cepat Tenaga Medis
               </td>
             </tr>
           
@@ -2575,7 +3095,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial Investigation (Komparasi Biaya)" data-kw="biaya homecare vs rawat inap">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial Investigation (Komparasi Biaya)" data-kw="biaya homecare vs rawat inap">
               <td>76</td>
               <td><span class="kw-text">biaya homecare vs rawat inap</span></td>
               <td><span class="vol-badge">210</span></td>
@@ -2587,7 +3107,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2735,7 +3255,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Informational (Panduan Perawatan Medis)" data-kw="pemulihan pasca operasi di rumah">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Informational (Panduan Perawatan Medis)" data-kw="pemulihan pasca operasi di rumah">
               <td>84</td>
               <td><span class="kw-text">pemulihan pasca operasi di rumah</span></td>
               <td><span class="vol-badge">170</span></td>
@@ -2747,7 +3267,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2915,7 +3435,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial (Paket Harian & Fleksibilitas)" data-kw="jasa perawat lansia harian jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial (Paket Harian & Fleksibilitas)" data-kw="jasa perawat lansia harian jakarta">
               <td>93</td>
               <td><span class="kw-text">jasa perawat lansia harian jakarta</span></td>
               <td><span class="vol-badge">140</span></td>
@@ -2927,7 +3447,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -2935,7 +3455,7 @@
               </td>
             </tr>
           
-            <tr data-status="Published / Scheduled" data-intent="Commercial Investigation (Transparansi Tarif All-In)" data-kw="tarif jasa perawat home care jakarta">
+            <tr data-status="Agustus (Published/Sched)" data-intent="Commercial Investigation (Transparansi Tarif All-In)" data-kw="tarif jasa perawat home care jakarta">
               <td>94</td>
               <td><span class="kw-text">tarif jasa perawat home care jakarta</span></td>
               <td><span class="vol-badge">140</span></td>
@@ -2947,7 +3467,7 @@
               </td>
               <td>
                 <span class="badge-status status-published">
-                  ✅ Sudah Tayang
+                  ✅ Ags Selesai
                 </span>
               </td>
               <td style="font-size:0.8rem; color:#94a3b8;">
@@ -9162,8 +9682,8 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>Data dikompilasi dari Google Keyword Planner resmi (GKP) & Database Editorial HomeCare Lansia.</p>
-    <p style="margin-top:4px;">Gunakan dashboard ini untuk menjaga integritas Anti-Kanibalisasi dan memetakan ekspansi topik konten berikutnya.</p>
+    <p>Roadmap 3 Bulan disusun berdasarkan Invoice Resmi & Database Google Keyword Planner (GKP) HomeCare Lansia.</p>
+    <p style="margin-top:4px;">Gunakan dashboard ini sebagai panduan produksi artikel mingguan dan monitoring kuota invoice.</p>
   </footer>
 
 </div>
