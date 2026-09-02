@@ -1,6 +1,6 @@
 # 🌐 WordPress Block Editor Reference Guides & Packages Showcase
 
-Interactive 3D Fluid-Responsive Showcase & Comprehensive Catalog of all **126 official WordPress JavaScript packages (`@wordpress/*`)** powering the Gutenberg editor and modern WordPress ecosystem.
+Interactive 3D Fluid-Responsive Showcase & Comprehensive Catalog of all **124 official WordPress JavaScript packages (`@wordpress/*`)** powering the Gutenberg editor and modern WordPress ecosystem.
 
 ---
 
@@ -25,7 +25,7 @@ Interactive 3D Fluid-Responsive Showcase & Comprehensive Catalog of all **126 of
    - **Zero external bloat:** 100% native GPU-accelerated CSS 3D transforms (running at silky 60fps).
    - Pure Vanilla JS for instantaneous search & filtering (124 KB total bundle).
    - Safe external outbound links with `rel="noopener noreferrer"`.
-5. **Interactive 126 Packages Catalog:**
+5. **Interactive 124 Packages Catalog:**
    - Real-time instant search by package name, category, or description.
    - 8 Category filter pills (Content, Blocks, Data, Screens, UI, Interactivity, Utils, DevTools).
    - Direct reference link to every package's official documentation.
