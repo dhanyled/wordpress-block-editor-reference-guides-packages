@@ -1,17 +1,17 @@
 # Katalog Interaktif 400+ Modul & Paket Resmi WordPress Gutenberg
 
-> Panduan praktis, interaktif 3D, dan responsif untuk seluruh ekosistem **WordPress Block Editor (Gutenberg)**: mencakup 124 Paket NPM Resmi (termasuk 20 paket Standalone yang bisa dipakai di luar WordPress), 18 Tutorial Block API, 131 Komponen UI React, dan 128 Blok Core Bawaan.
+> Panduan praktis, interaktif 3D, dan responsif untuk seluruh ekosistem **WordPress Block Editor (Gutenberg)**: dilengkapi **Table of Contents (Daftar Isi Melayang)**, **Anchor Links per Modul**, **Sinkronisasi Filter URL**, serta panduan 20 paket Standalone yang bisa dipakai bebas di luar WordPress.
 
 ---
 
-## 🌟 Fitur Utama
+## 🌟 Fitur Unggulan Terbaru
 
-- **401 Sumber Daya Terverifikasi:** 100% dipetakan dari dokumentasi resmi [WordPress Developer Handbook](https://developer.wordpress.org/block-editor/reference-guides/).
-- **🌍 20 Paket Standalone (Bisa di Luar WordPress):** Modul-modul resmi yang 100% agnostic/mandiri dan dapat diinstal via NPM di proyek **Node.js, Next.js, React, Vue, Express, atau CLI bot**.
-- **Contoh Implementasi & Sinergi Nyata:** Setiap modul dilengkapi fungsi praktis, contoh pemakaian di WordPress maupun luar WordPress, serta kombinasi paket pendukung.
-- **Bahasa Natural & Humanis:** Penjelasan santai, mengalir, lugas, dan bebas dari istilah kamus yang kaku.
-- **Akselerasi 3D & Mobile-First:** Efek 3D tilt pada desktop serta 2D sentuhan ringan pada layar HP/tablet.
-- **Pencarian Kilat & Tab Kategori:** Live filter instan tanpa reload untuk menyaring modul sesuai kebutuhan.
+1. **📑 Sticky Table of Contents (Daftar Isi Cepat):** Navigasi melayang di bagian atas layar untuk melompat langsung ke bagian Beranda, 7 Ide Proyek, Pencarian, 20 Paket Standalone, Paket NPM, Tutorial API, Komponen UI, maupun Blok Core.
+2. **🔗 Deep-Link Anchor per Modul (#):** Setiap modul memiliki tautan jangkar unik (misal: `#package-wp-wordcount`, `#component-modal`). Cukup klik tombol `#` atau *"Salin URL"*, link langsung tersalin ke clipboard dan kartu target akan bersinar (*highlight glow*).
+3. **🌐 URL State Synchronization:** Filter kategori dan kata kunci pencarian otomatis tersinkronisasi ke URL browser (contoh: `?tab=standalone&q=wordcount`). Jika URL ini dibagikan, orang lain akan langsung membuka halaman dengan filter yang sama persis!
+4. **📋 Tombol "Salin Link Filter Saat Ini":** Satu klik untuk menyalin seluruh kondisi pencarian dan tab yang sedang aktif.
+5. **🌍 20 Paket Standalone (Bebas di Luar WordPress):** Modul mandiri yang bisa diinstal via NPM di proyek **Node.js, Next.js, React, Vue, Express, atau CLI bot** tanpa butuh WordPress core.
+6. **Bahasa Alami & Ramah Pemula:** Penjelasan santai, jelas, mengalir, dan bebas istilah kaku.
 
 ---
 
@@ -28,17 +28,12 @@
 
 ---
 
-## 🌍 Contoh Paket yang Bisa Dipakai Bebas di Luar WordPress
+## 🚀 Contoh Penggunaan Deep Links
 
-1. **`@wordpress/wordcount`:** Menghitung kata, karakter, dan estimasi waktu baca naskah di bot Node.js atau Next.js.
-2. **`@wordpress/autop`:** Mengubah spasi enter mentah menjadi paragraf `<p>` HTML yang rapi.
-3. **`@wordpress/block-serialization-default-parser`:** Mengubah teks postingan WordPress menjadi objek JSON di aplikasi Headless CMS.
-4. **`@wordpress/hooks`:** Sistem event pub-sub (Action & Filter) murni JavaScript di aplikasi React atau Vue apa pun.
-5. **`@wordpress/url`:** Utilitas manipulasi URL dan query param tanpa dependensi browser.
-6. **`@wordpress/i18n`:** Engine penerjemah bahasa standar Gettext (.po/.mo) yang super ringan.
-7. **`@wordpress/escape-html` & `@wordpress/html-entities`:** Sanitasi keamanan anti-XSS dan decode entitas HTML.
-8. **`@wordpress/shortcode`:** Parser kode shortcode `[shortcode]` di aplikasi custom non-WordPress.
-9. **`@wordpress/scripts`:** Bundler serbaguna satu perintah pengganti konfigurasi Webpack/Babel manual.
+- Buka langsung tab Standalone: `index.html?tab=standalone`
+- Buka langsung pencarian kata kunci tertentu: `index.html?q=wordcount`
+- Lompat langsung ke modul tertentu: `index.html#package-wp-wordcount`
+- Kombinasi filter dan modul: `index.html?tab=standalone&q=wordcount#package-wp-wordcount`
 
 ---
 
@@ -50,9 +45,10 @@ Cukup buka berkas `index.html` di browser modern apa pun, atau pasang di server 
 # Clone repositori
 git clone https://github.com/dhanyled/wordpress-block-editor-reference-guides-packages.git
 
-# Buka berkas
+# Masuk ke folder repositori
 cd wordpress-block-editor-reference-guides-packages
-# Buka index.html di browser favorit Anda
+
+# Buka index.html di browser
 ```
 
 ---
